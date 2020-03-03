@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = auth()->id();
+       
         $calender_events = DB::table('calender_events')->get();
 
         $ce = $calender_events->toJson();

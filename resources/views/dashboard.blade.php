@@ -231,14 +231,7 @@ calendar.render();
 
 
 });
-$('#addEventForm').submit(function(){//submit data to db and re-render calender
 
-
- 
-          
-          
-
-});
 </script>
         @include('layouts.footers.auth')
     </div>
