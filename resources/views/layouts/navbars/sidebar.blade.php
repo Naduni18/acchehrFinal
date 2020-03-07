@@ -108,7 +108,7 @@
                 </li>
           
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('advance_requests_ajax_crud.index')}}">
                         <i class="far fa-clock text-primary"></i> {{ __('Advance payment request') }}
                     </a>
                 </li>

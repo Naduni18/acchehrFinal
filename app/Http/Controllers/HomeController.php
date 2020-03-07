@@ -69,15 +69,19 @@ class HomeController extends Controller
             ],
         ]);
 
-
-        $assignees_array = DB::table('users')->select('id','name')->get();
-
-        $calender_events = DB::table('calender_events')->get();
-
-        $ce = $calender_events->toJson();
-
-        return view('dashboard',  compact('ce','assignees_array'));
+        return redirect()->to('/home'); 
     }
 
+    /**
+     * Store new events.
+     *
+     * @return \Illuminate\View\View
+     * @param  \App\Http\Request   $request
+     */
+    public function update(Request $request)
+    {
+
+        
+    }
 
 }

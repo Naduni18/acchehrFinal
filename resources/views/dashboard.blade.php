@@ -21,15 +21,19 @@
         <h4 class="modal-title" ></h4>
       </div>
       <div class="modal-body">
-        
+      <form id="editEventForm" method="post"  autocomplete="off">
+       @csrf
+       <h1 id="eventTitle"></h1>
+       
+       <input type="number" name="eventId" id="input-eventId" style="visibility:hidden;">
       </div>
       <div class="modal-footer">
       @can('isManager')
-        <button id="edit_btn" type="button" class="btn btn-primary" data-dismiss="modal" style="visibility:hidden;">Edit event</button>
-        <button id="delete_btn" type="button" class="btn btn-primary" data-dismiss="modal" style="visibility:hidden;">Delete Event</button>
-        @endcan
-        <button id="close_btn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        
+        <button id="edit_btn"  type="button" onclick="editEvent(this.value)" name="edit" class="btn btn-primary" style="visibility:hidden;">Edit event</button>
+        <button id="delete_btn" type="submit" name="delete" formaction="{{ route('home.update') }}" class="btn btn-primary" style="visibility:hidden;">Delete Event</button>
+        @endcan  
+      <button id="close_btn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </form>
       </div>
     </div>
 
@@ -214,14 +218,16 @@ info.jsEvent.preventDefault(); // don't let the browser navigate
 if(info.event.source.id=='google'){
  
   $('.modal-title').html('Holiday/Public Event');
-  $('.modal-body').html(info.event.title);
+  $('#eventTitle').html(info.event.title);
   $( "#myModal" ).modal('toggle');
   
 }else{
   $('.modal-title').html('Event');
+  $('#edit_btn').val(info.event.id);
   $('#edit_btn').css('visibility', 'visible');
   $('#delete_btn').css('visibility', 'visible');
-  $('.modal-body').html(info.event.title);
+  $('#input-eventId').val(info.event.id);
+  $('#eventTitle').html(info.event.title);
   $( "#myModal" ).modal('toggle');
 }
 },
@@ -231,7 +237,10 @@ calendar.render();
 
 
 });
-
+function editEvent(val){
+  $( "#myModal" ).modal('hide');
+  
+}
 </script>
         @include('layouts.footers.auth')
     </div>

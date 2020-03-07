@@ -30,8 +30,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::post('/home', 'HomeController@store')->name('home.store');
+    Route::post('/home/store', 'HomeController@store')->name('home.store');
+    Route::post('/home/update', 'HomeController@update')->name('home.update');
     
+    Route::resource('advance_requests_ajax_crud', 'AdvanceRequestsController');
+
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'MissingAttendanceController@index']);
     Route::post('attendance', ['as' => 'attendance.store', 'uses' => 'MissingAttendanceController@store']);
     Route::post('attendance/reject{id}', ['as' => 'attendance.reject', 'uses' => 'MissingAttendanceController@reject']);
