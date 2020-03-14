@@ -9,16 +9,6 @@ use Illuminate\Http\Request;
 class MissingAttendanceController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\View\View
@@ -26,63 +16,35 @@ class MissingAttendanceController extends Controller
     public function index()
     {
         $id = auth()->id();
-        $calender_events = DB::table('missing_attendance')->where([
-            ['request_by', '=', $id],
-        ])->get();  
-        $ce = $calender_events->toJson();
-
-        $to_approve = DB::table('missing_attendance')->where([
-            ['manger_to_approve', '=', $id],
-        ])->get();
+        $attendance_requests = DB::table('missing_attendance')->where('request_by', '=', $id)->get();  
+        $to_approve = DB::table('missing_attendance')->where('manger_to_approve', '=', $id)->get();
   
-       return view('attendance.entry',  compact('ce','to_approve'));
+        return view('attendance.view',  compact('attendance_requests','to_approve'));
       
        
     }
-    public static function get_manager($manager_id)
+    public static function get_user_name($user_id)
     {
-        $manager=DB::table('users')->select('name')->where([['id', '=', $manager_id],])->get();
+        $user_=DB::table('users')->select('name')->where([['id', '=', $user_id],])->first();
         
-        return $manager;
+        return $user_;
     }
 
-    public static function reject($attid)
+    public static function reject(Request $request)
     {
-        DB::table('missing_attendance')
-        ->where('id', '=',  $attid)
-        ->update(['status' =>'rejected']); 
+        $attid=$request->requestId;
+        DB::table('missing_attendance')->where('id', '=',  $attid)->update(['status' =>'rejected']); 
 
-        $id = auth()->id();
-        $calender_events = DB::table('missing_attendance')->where([
-            ['request_by', '=', $id],
-        ])->get();  
-        $ce = $calender_events->toJson();
-
-        $to_approve = DB::table('missing_attendance')->where([
-            ['manger_to_approve', '=', $id],
-        ])->get();
-  
-       return view('attendance.entry',  compact('ce','to_approve'));
-        
-    }
-    public static function approve($attid)
-    {
-        DB::table('missing_attendance')
-            ->where('id', '=',  $attid)
-            ->update(['status' => 'approved']);
-
-            $id = auth()->id();
-            $calender_events = DB::table('missing_attendance')->where([
-                ['request_by', '=', $id],
-            ])->get();  
-            $ce = $calender_events->toJson();
-    
-            $to_approve = DB::table('missing_attendance')->where([
-                ['manger_to_approve', '=', $id],
-            ])->get();
+        return redirect()->to('/attendance'); 
       
-           return view('attendance.entry',  compact('ce','to_approve'));
-            
+        
+    }
+    public static function approve(Request $request)
+    {
+        $attid=$request->requestId;
+        DB::table('missing_attendance')->where('id', '=',  $attid)->update(['status' => 'approved']);
+
+        return redirect()->to('/attendance');    
     }
 
     /**
@@ -93,13 +55,10 @@ class MissingAttendanceController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->att_id_=="add"){
         
         $id = auth()->id();
-        $calender_events = DB::table('missing_attendance')->where([
-            ['request_by', '=', $id],
-        ])->get();
-
-        $ce = $calender_events->toJson();
+        
 
         DB::table('missing_attendance')->insert([
             [
@@ -111,11 +70,49 @@ class MissingAttendanceController extends Controller
                 'manger_to_approve'=>auth()->user()->supervisor_manager,
             ],
         ]);
-        $to_approve = DB::table('missing_attendance')->where([
-            ['manger_to_approve', '=', $id],
-        ])->get();
+        }else{
+            DB::table('missing_attendance')->where('id', '=', $request->att_id_)->update(
+                array(
+                'reason' => $request->reason,
+                'date'=>$request->date,
+                'start' =>$request->start,
+                'end'=>$request->end,
+                'request_by'=>auth()->id(),
+                'manger_to_approve'=>auth()->user()->supervisor_manager,
+                )
+            );
+    
+
+        }
        
-       
-        return view('attendance.entry',  compact('ce','to_approve'));
+        return redirect()->to('/attendance'); 
     }
+    public static function destroy(Request $request)
+    {
+        $attid=$request->requestId;
+        DB::table('missing_attendance')->where('id', '=',  $attid)->delete();
+        return redirect()->to('/attendance'); 
+    }
+    
+
+    public function index2(Request $request)
+    {
+        
+        $attid=$request->requestId;
+        
+        if($attid=="add"){
+            $attendance_req =null;
+            return view('attendance.add_edit',compact('attid','attendance_req'));
+            
+        }else{
+            $attendance_req = DB::table('missing_attendance')->where('id', '=', $attid)->first(); 
+           
+            return view('attendance.add_edit',compact('attid','attendance_req'));
+        }
+       
+        
+      
+       
+    }
+
 }

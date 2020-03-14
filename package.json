@@ -31,7 +31,8 @@
     "@fullcalendar/resource-common": "^4.4.0",
     "@fullcalendar/rrule": "^4.4.0",
     "@fullcalendar/timegrid": "^4.4.0",
-    "@fullcalendar/timeline": "^4.4.0"
+    "@fullcalendar/timeline": "^4.4.0",
+    "uuid": "^7.0.2"
   },
   "name": "ACCHE_HR",
   "description": "<p align=\"center\"><img src=\"https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg\" width=\"400\"></p>",

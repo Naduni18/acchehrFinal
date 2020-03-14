@@ -15,18 +15,16 @@ class CreateLeaveRequestsTable extends Migration
     {
         Schema::create('leave_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('emp_id')->unsigned();
-            $table->integer('document_id');
+            $table->integer('document_id')->nullable();
             $table->string('reason');
-            $table->dateTime('from_date_time');
-            $table->dateTime('to_date_time');
+            $table->date('start');
+            $table->date('end');
             $table->bigInteger('request_by')->unsigned();//emp_id
-            $table->bigInteger('approved_by')->unsigned();//emp_id
+            $table->bigInteger('approved_by')->unsigned()->nullable();//emp_id
             $table->enum('status', ['approved','rejected','pending'])->default('pending');
-            $table->enum('duration_type', ['full_day','half_day','short_leave'])->default('full_day');
-            $table->enum('type', ['no_pay','casual'])->default('casual');
+            $table->enum('category', ['full day','half day','short leave'])->default('full day');
+            $table->enum('type', ['no pay','casual'])->default('casual');
             $table->timestamps();
-            $table->foreign('emp_id')->references('id')->on('users');
             $table->foreign('request_by')->references('id')->on('users');
             $table->foreign('approved_by')->references('id')->on('users');
         });
