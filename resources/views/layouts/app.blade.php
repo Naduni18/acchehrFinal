@@ -59,5 +59,7 @@
         <script src="{{ asset('@fullcalendar') }}/moment/main.js"></script>
         <script src="{{ asset('@fullcalendar') }}/rrule/main.js"></script>
         <script src="{{ asset('@fullcalendar') }}/google-calendar/main.js"></script>
+        
+<script>
     </body>
 </html>

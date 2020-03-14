@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Http\Request;
-use Redirect,Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class AdvanceRequestsController extends Controller
 {
@@ -16,89 +15,19 @@ class AdvanceRequestsController extends Controller
      */
     public function index()
     {
-        $data['advance_req'] = DB::table('advance_requests')->get();
+        
 
-        return view('advance_payment.advance',$data);
+        return view('advance_payment.advance');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public static function getEvent($eventid) {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $data = DB::table('advance_requests')
-        ->updateOrInsert(
-            ['id' => $request->id],
-            [
-            'emp_id' => $request->emp_id,
-            'approved_by'=>$request->approved_by,
-            'amount'=>$request->amount,
-            'notes'=>$request->notes,
-            'status'=>$request->status,
-            'for_year'=>$request->for_year,
-            'for_month'=>$request->for_month
-            ]
-        );
-        return Response::json($data);
-    }
+        $event_ = DB::table('calender_events')->where('id', '=', $eventid)->first();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        //$test=array('a'=>'A','b'=>'B');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data = DB::table('advance_requests')->where('id', '=', $id)->first();
-        return Response::json($data);
-    }
+         // Return as json
+        return $event_;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $data = DB::table('advance_requests')->where('id', '=', $id)->delete();
-        return view('advance_payment.advance',$data);
     }
 }

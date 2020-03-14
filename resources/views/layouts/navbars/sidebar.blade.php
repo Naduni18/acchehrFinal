@@ -90,7 +90,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('attendance.index') }}">
+                    <a class="nav-link" href="{{ route('attendance') }}">
                         <i class="fas fa-briefcase text-primary"></i> {{ __('Missing Attendance') }}
                     </a>
                 </li>
@@ -108,44 +108,16 @@
                 </li>
           
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('advance_requests_ajax_crud.index')}}">
+                    <a class="nav-link" href="{{ route('advance_requests')}}">
                         <i class="far fa-clock text-primary"></i> {{ __('Advance payment request') }}
                     </a>
                 </li>
                 
               
                 <li class="nav-item">
-                    <a class="nav-link" href="#navbar-three" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-1">
-                        <i class="far fa-calendar-minus text-primary"></i>
-                        <span class="nav-link-text">{{ __('Leave') }}</span>
+                    <a class="nav-link" href="{{ route('leave') }}">
+                        <i class="fas fa-briefcase text-primary"></i> {{ __('Leave') }}
                     </a>
-
-                    <div class="collapse" id="navbar-three">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                            
-                            <a class="nav-link"  href="#">
-                            <i class="fas fa-pen text-primary"></i>
-                            <span class="nav-link-text"> {{ __('Entry') }}</span>
-                                </a>
-                                
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                <i class="fas fa-check text-primary"></i>
-                            <span class="nav-link-text"> 
-                                    {{ __('Approval') }}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                <i class="fas fa-history text-primary"></i>
-                            <span class="nav-link-text"> 
-                                    {{ __('History') }}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#navbar-four" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-1">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Uuid;
 
 
 class HomeController extends Controller
@@ -47,7 +48,7 @@ class HomeController extends Controller
     {
         
         $id = auth()->id();
-       
+       $uuid = null;
 
         $assigned_to='';
         foreach($request->assignesto as $key){
@@ -55,6 +56,18 @@ class HomeController extends Controller
             $assigned_to=strval($key).','.$assigned_to;
 
         }
+        $days_Of_Week='';
+        
+        foreach($request->daysOfWeek as $key){
+
+            $days_Of_Week=strval($key).','.$days_Of_Week;
+
+        }
+        $days_Of_Week_array='['.$days_Of_Week.']';
+        if($request->startRecur!=null){
+            $uuid = Uuid::generate()->string;
+        }
+    
 //to do --------------add if else to prevent duplicate entry
         DB::table('calender_events')->insertOrIgnore([
             [
@@ -62,6 +75,12 @@ class HomeController extends Controller
                 'description' =>$request->description,
                 'start' =>$request->start,
                 'end'=>$request->end,
+                'startTime' =>$request->startTime,
+                'endTime'=>$request->endTime,
+                'startRecur' =>$request->startRecur,
+                'endRecur'=>$request->endRecur,
+                'daysOfWeek'=>$days_Of_Week_array,
+                'groupId'=>$uuid,
                 'assigned_by'=>$id,
                 'assigned_to'=>$assigned_to,
                 'location'=>$request->location,
@@ -78,10 +97,14 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      * @param  \App\Http\Request   $request
      */
-    public function update(Request $request)
+    public function delete(Request $request)
     {
+        $event_Id = $request->eventId;
 
+        DB::table('calender_events')->where('id', '=', $event_Id)->delete();
+
+        return redirect()->to('/home'); 
         
     }
-
+ 
 }
