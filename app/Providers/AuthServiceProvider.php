@@ -28,19 +28,19 @@ class AuthServiceProvider extends ServiceProvider
        // define a admin user role
         // returns true if user role is set to admin
         Gate::define('isManager', function($user) {
-           return $user->role == 'manager';
+           return $user->user_role == 'manager';
         });
     
         // define a author user role
         // returns true if user role is set to author
         Gate::define('isEmployee', function($user) {
-            return $user->role == 'employee';
+            return $user->user_role == 'employee';
         });
 
         // define a author user role
         // returns true if user role is set to author
         Gate::define('isAdmin', function($user) {
-            return $user->role == 'admin';
+            return $user->user_role == 'admin';
         });
     
     }

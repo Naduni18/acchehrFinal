@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('Employee Management')])
 
 @section('content')
-    @include('users.partials.header', ['title' => __('Edit employee details')])   
+    @include('users.partials.header', ['title' => __('Add New Employee')])   
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -10,7 +10,7 @@
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Manage employee information') }}</h3>
+                                <h3 class="mb-0">{{ __('Employee Management') }}</h3>
                             </div>
                             <div class="col-4 text-right">
                                 <a href="{{ route('user.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
@@ -18,17 +18,27 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('user.update', $user) }}" autocomplete="off">
+                        <form method="post" action="{{ route('edit_user.update') }}" enctype="multipart/form-data" autocomplete="off">
                             @csrf
-                            @method('put')
-
+                            
+                            
                             <div class="pl-lg-4">
+                            <input type="text" name="user_id_" id="input-user_id" hidden>
                             <fieldset name="Personal_information">
                             <legend class="heading-small text-muted mb-4" >Personal information</legend>
+                                <div class="form-group{{ $errors->has('avatar') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-avatar">{{ __('Avatar') }}</label>
+                                    <input type="file" name="avatar" id="input-avatar" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" >
 
+                                    @if ($errors->has('avatar'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('avatar') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', $user->name) }}" required autofocus>
+                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}"  required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -36,10 +46,9 @@
                                         </span>
                                     @endif
                                 </div>
-
                                 <div class="form-group{{ $errors->has('NIC') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-NIC">{{ __('NIC') }}</label>
-                                    <input type="text" pattern="[0-9]{9}+[V]{1}|[0-9]{12}" name="NIC" id="input-NIC" class="form-control form-control-alternative{{ $errors->has('NIC') ? ' is-invalid' : '' }}" placeholder="{{ __('NIC') }}" value="{{ old('NIC', $user->NIC) }}" required autofocus>
+                                    <input type="text" pattern="[0-9]{9}+[V]{1}|[0-9]{12}" name="NIC" id="input-NIC" class="form-control form-control-alternative{{ $errors->has('NIC') ? ' is-invalid' : '' }}" placeholder="{{ __('NIC') }}" required autofocus>
 
                                     @if ($errors->has('NIC'))
                                         <span class="invalid-feedback" role="alert">
@@ -49,7 +58,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
-                                    <input type="email" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', $user->email) }}" required>
+                                    <input type="email" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" required>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -57,10 +66,9 @@
                                         </span>
                                     @endif
                                 </div>
-                              
                                 <div class="form-group{{ $errors->has('current_job_position') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-current_job_position">{{ __('Current Job Title') }}</label>
-                                    <input type="text" name="current_job_position" id="input-current_job_position" class="form-control form-control-alternative{{ $errors->has('current_job_position') ? ' is-invalid' : '' }}" placeholder="{{ __('Current Job Title') }}" value="{{ old('current_job_position', $user->current_job_position) }}" required autofocus>
+                                    <input type="text" name="current_job_position" id="input-current_job_position" class="form-control form-control-alternative{{ $errors->has('current_job_position') ? ' is-invalid' : '' }}" placeholder="{{ __('Current Job Title') }}"  required autofocus>
 
                                     @if ($errors->has('current_job_position'))
                                         <span class="invalid-feedback" role="alert">
@@ -70,7 +78,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('birthday') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-birthday">{{ __('Birthday') }}</label>
-                                    <input type="date" name="birthday" id="input-birthday" class="form-control form-control-alternative{{ $errors->has('birthday') ? ' is-invalid' : '' }}" placeholder="{{ __('Birthday') }}" value="{{ old('birthday', $user->birthday) }}" autofocus>
+                                    <input type="date" name="birthday" id="input-birthday" class="form-control form-control-alternative{{ $errors->has('birthday') ? ' is-invalid' : '' }}" placeholder="{{ __('Birthday') }}"  autofocus>
 
                                     @if ($errors->has('birthday'))
                                         <span class="invalid-feedback" role="alert">
@@ -80,7 +88,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('anniversary') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-anniversary">{{ __('Anniversary') }}</label>
-                                    <input type="date" name="anniversary" id="input-anniversary" class="form-control form-control-alternative{{ $errors->has('anniversary') ? ' is-invalid' : '' }}" placeholder="{{ __('Anniversary') }}" value="{{ old('anniversary', $user->anniversary) }}" autofocus>
+                                    <input type="date" name="anniversary" id="input-anniversary" class="form-control form-control-alternative{{ $errors->has('anniversary') ? ' is-invalid' : '' }}" placeholder="{{ __('Anniversary') }}" autofocus>
 
                                     @if ($errors->has('anniversary'))
                                         <span class="invalid-feedback" role="alert">
@@ -90,7 +98,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('phone_home') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-phone_home">{{ __('Phone Home') }}</label>
-                                    <input type="text" pattern="[0]{1}[0-9]{9}" name="phone_home" id="input-phone_home" class="form-control form-control-alternative{{ $errors->has('phone_home') ? ' is-invalid' : '' }}" placeholder="{{ __('Phone Home') }}" value="{{ old('phone_home',$user->phone_home) }}" autofocus>
+                                    <input type="text" pattern="[0]{1}[0-9]{9}" name="phone_home" id="input-phone_home" class="form-control form-control-alternative{{ $errors->has('phone_home') ? ' is-invalid' : '' }}" placeholder="{{ __('Phone Home') }}"  autofocus>
 
                                     @if ($errors->has('phone_home'))
                                         <span class="invalid-feedback" role="alert">
@@ -100,7 +108,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('phone_mobile') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-phone_mobile">{{ __('Phone Mobile') }}</label>
-                                    <input type="text" pattern="[0]{1}[0-9]{9}" name="phone_mobile" id="input-phone_mobile" class="form-control form-control-alternative{{ $errors->has('phone_mobile') ? ' is-invalid' : '' }}" placeholder="{{ __('Phone Mobile') }}" value="{{ old('phone_mobile',$user->phone_mobile) }}" required autofocus>
+                                    <input type="text" pattern="[0]{1}[0-9]{9}" name="phone_mobile" id="input-phone_mobile" class="form-control form-control-alternative{{ $errors->has('phone_mobile') ? ' is-invalid' : '' }}" placeholder="{{ __('Phone Mobile') }}" required autofocus>
 
                                     @if ($errors->has('phone_mobile'))
                                         <span class="invalid-feedback" role="alert">
@@ -110,7 +118,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('address_permanent') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-address_permanent">{{ __('Address Permanent') }}</label>
-                                    <input type="text" name="address_permanent" id="input-address_permanent" class="form-control form-control-alternative{{ $errors->has('address_permanent') ? ' is-invalid' : '' }}" placeholder="{{ __('Address Permanent') }}" value="{{ old('address_permanent',$user->address_permanent) }}" required autofocus>
+                                    <input type="text" name="address_permanent" id="input-address_permanent" class="form-control form-control-alternative{{ $errors->has('address_permanent') ? ' is-invalid' : '' }}" placeholder="{{ __('Address Permanent') }}"  required autofocus>
 
                                     @if ($errors->has('address_permanent'))
                                         <span class="invalid-feedback" role="alert">
@@ -118,9 +126,9 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('address_permanent') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('address_temporary') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-address_temporary">{{ __('Address Temporary') }}</label>
-                                    <input type="text" name="address_temporary" id="input-address_temporary" class="form-control form-control-alternative{{ $errors->has('address_temporary') ? ' is-invalid' : '' }}" placeholder="{{ __('Address Temporary') }}" value="{{ old('address_temporary',$user->address_temporary) }}" autofocus>
+                                    <input type="text" name="address_temporary" id="input-address_temporary" class="form-control form-control-alternative{{ $errors->has('address_temporary') ? ' is-invalid' : '' }}" placeholder="{{ __('Address Temporary') }}"  autofocus>
 
                                     @if ($errors->has('address_temporary'))
                                         <span class="invalid-feedback" role="alert">
@@ -130,7 +138,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('branch') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-branch">{{ __('Office Branch') }}</label>
-                                    <input type="text" name="branch" id="input-branch" class="form-control form-control-alternative{{ $errors->has('branch') ? ' is-invalid' : '' }}" placeholder="{{ __('Office Branch') }}" value="{{ old('branch',$user->branch) }}" required autofocus>
+                                    <input type="text" name="branch" id="input-branch" class="form-control form-control-alternative{{ $errors->has('branch') ? ' is-invalid' : '' }}" placeholder="{{ __('Office Branch') }}" required autofocus>
 
                                     @if ($errors->has('branch'))
                                         <span class="invalid-feedback" role="alert">
@@ -140,7 +148,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('bank') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-bank">{{ __('Bank') }}</label>
-                                    <input type="text" name="bank" id="input-bank" class="form-control form-control-alternative{{ $errors->has('bank') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank') }}" value="{{ old('bank',$user->bank) }}" autofocus>
+                                    <input type="text" name="bank" id="input-bank" class="form-control form-control-alternative{{ $errors->has('bank') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank') }}" autofocus>
 
                                     @if ($errors->has('bank'))
                                         <span class="invalid-feedback" role="alert">
@@ -148,35 +156,41 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('bank_no') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-bank_no">{{ __('Bank Account Number') }}</label>
-                                    <input type="text" pattern="[0-9]{10,}" max="18" name="bank_no" id="input-bank_no" class="form-control form-control-alternative{{ $errors->has('bank_no') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank Account Number') }}" value="{{ old('bank_no',$user->bank_no) }}" autofocus>
+                                <div class="form-group{{ $errors->has('bank_number') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-bank_number">{{ __('Bank Account Number') }}</label>
+                                    <input type="text" pattern="[0-9A-Z-]{10,}" max="34" name="bank_number" id="input-bank_number" class="form-control form-control-alternative{{ $errors->has('bank_number') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank Account Number') }}"  autofocus>
 
-                                    @if ($errors->has('bank_no'))
+                                    @if ($errors->has('bank_number'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('bank_no') }}</strong>
+                                            <strong>{{ $errors->first('bank_number') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-role">{{ __('Role') }}</label>
-                                    <select  name="next_role" id="input-role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}" required autofocus>
-                                    <option value="manager"  {{ ($user->role) == "manager" ? 'selected' : '' }} >Manager</option>
-                                    <option value="employee" {{ ($user->role) == "employee" ? 'selected' : '' }} >Employee</option>
+                                <div class="form-group{{ $errors->has('user_role') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-user_role">{{ __('Role') }}</label>
+                                    <select  name="user_role" id="input-user_role" class="form-control form-control-alternative{{ $errors->has('user_role') ? ' is-invalid' : '' }}" required >
+                                    <option value="manager"  >Manager</option>
+                                    <option value="employee" selected >Employee</option>
                                     </select>
-                                    @if ($errors->has('role'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('role') }}</strong>
-                                        </span>
-                                    @endif
+                                    
                                 </div>
-                                </fieldset>
-                                <hr class="dashed">
-                                <fieldset name="Next_kin_details">
-                                <legend class="heading-small text-muted mb-4">Next kin details</legend>
+                                <div class="form-group{{ $errors->has('supervisor_manager') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-supervisor_manager">{{ __('Supervisor/Manager') }}</label>
+                                    <select  name="supervisor_manager" id="input-supervisor_manager" class="form-control form-control-alternative{{ $errors->has('supervisor_manager') ? ' is-invalid' : '' }}"  required autofocus>
+
+                                    <option disabled selected value> -- select an option -- </option>
+                                    @foreach($managers_array as $key) 
+                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <hr class="dashed">
+                            <fieldset name="Next_kin_details">
+                            <legend class="heading-small text-muted mb-4">Next kin details</legend>
                                 <div class="form-group{{ $errors->has('next_kin_name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-next_kin_name">{{ __('Name of the next kin') }}</label>
-                                    <input type="text" name="next_kin_name" id="input-next_kin_name" class="form-control form-control-alternative{{ $errors->has('next_kin_name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name of the next kin') }}" value="{{ old('next_kin_name',$user->next_kin_name) }}" autofocus>
+                                    <input type="text" name="next_kin_name" id="input-next_kin_name" class="form-control form-control-alternative{{ $errors->has('next_kin_name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name of the next kin') }}"  autofocus>
 
                                     @if ($errors->has('next_kin_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -186,7 +200,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('next_kin_occupation') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-next_kin_occupation">{{ __('Job title of the next kin') }}</label>
-                                    <input type="text" name="next_kin_occupation" id="input-next_kin_occupation" class="form-control form-control-alternative{{ $errors->has('next_kin_occupation') ? ' is-invalid' : '' }}" placeholder="{{ __('Job title of the next kin') }}" value="{{ old('next_kin_occupation',$user->next_kin_occupation) }}" autofocus>
+                                    <input type="text" name="next_kin_occupation" id="input-next_kin_occupation" class="form-control form-control-alternative{{ $errors->has('next_kin_occupation') ? ' is-invalid' : '' }}" placeholder="{{ __('Job title of the next kin') }}"  autofocus>
 
                                     @if ($errors->has('next_kin_occupation'))
                                         <span class="invalid-feedback" role="alert">
@@ -196,7 +210,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('next_kin_address') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-next_kin_address">{{ __('Personal address of the next kin') }}</label>
-                                    <input type="text" name="next_kin_address" id="input-next_kin_office_address" class="form-control form-control-alternative{{ $errors->has('next_kin_office_address') ? ' is-invalid' : '' }}" placeholder="{{ __('Personal address of the next kin') }}" value="{{ old('next_kin_office_address',$user->next_kin_office_address) }}" autofocus>
+                                    <input type="text" name="next_kin_address" id="input-next_kin_office_address" class="form-control form-control-alternative{{ $errors->has('next_kin_office_address') ? ' is-invalid' : '' }}" placeholder="{{ __('Personal address of the next kin') }}"  autofocus>
 
                                     @if ($errors->has('next_kin_address'))
                                         <span class="invalid-feedback" role="alert">
@@ -206,7 +220,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('next_kin_office_address') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-next_kin_office_address">{{ __('Office address of the next kin') }}</label>
-                                    <input type="text" name="next_kin_office_address" id="input-next_kin_office_address" class="form-control form-control-alternative{{ $errors->has('next_kin_office_address') ? ' is-invalid' : '' }}" placeholder="{{ __('Office address of the next kin') }}" value="{{ old('next_kin_office_address',$user->next_kin_office_address) }}" autofocus>
+                                    <input type="text" name="next_kin_office_address" id="input-next_kin_office_address" class="form-control form-control-alternative{{ $errors->has('next_kin_office_address') ? ' is-invalid' : '' }}" placeholder="{{ __('Office address of the next kin') }}" autofocus>
 
                                     @if ($errors->has('next_kin_office_address'))
                                         <span class="invalid-feedback" role="alert">
@@ -216,7 +230,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('next_kin_phone_mobile') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-next_kin_phone_mobile">{{ __('Mobile phone number of the next kin') }}</label>
-                                    <input type="text" pattern="[0]{1}[0-9]{9}" name="next_kin_phone_mobile" id="input-next_kin_phone_mobile" class="form-control form-control-alternative{{ $errors->has('next_kin_phone_mobile') ? ' is-invalid' : '' }}" placeholder="{{ __('Mobile phone number of the next kin') }}" value="{{ old('next_kin_phone_mobile',$user->next_kin_phone_mobile) }}" autofocus>
+                                    <input type="text" pattern="[0]{1}[0-9]{9}" name="next_kin_phone_mobile" id="input-next_kin_phone_mobile" class="form-control form-control-alternative{{ $errors->has('next_kin_phone_mobile') ? ' is-invalid' : '' }}" placeholder="{{ __('Mobile phone number of the next kin') }}" autofocus>
 
                                     @if ($errors->has('next_kin_phone_mobile'))
                                         <span class="invalid-feedback" role="alert">
@@ -226,7 +240,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('next_kin_phone_home') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-next_kin_phone_home">{{ __('Home phone number of the next kin') }}</label>
-                                    <input type="text" pattern="[0]{1}[0-9]{9}" name="next_kin_phone_home" id="input-next_kin_phone_home" class="form-control form-control-alternative{{ $errors->has('next_kin_phone_home') ? ' is-invalid' : '' }}" placeholder="{{ __('Home phone number of the next kin') }}" value="{{ old('next_kin_phone_home',$user->next_kin_phone_home) }}" autofocus>
+                                    <input type="text" pattern="[0]{1}[0-9]{9}" name="next_kin_phone_home" id="input-next_kin_phone_home" class="form-control form-control-alternative{{ $errors->has('next_kin_phone_home') ? ' is-invalid' : '' }}" placeholder="{{ __('Home phone number of the next kin') }}" autofocus>
 
                                     @if ($errors->has('next_kin_phone_home'))
                                         <span class="invalid-feedback" role="alert">
@@ -235,7 +249,7 @@
                                     @endif
                                 </div>
                                 
-                                </fieldset>
+                            </fieldset>       
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>
@@ -245,7 +259,19 @@
                 </div>
             </div>
         </div>
-        
+        <script>
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    var user_id = @json($id);
+    
+
+    $("#input-user_id").val(user_id);
+      
+});
+
+</script>
         @include('layouts.footers.auth')
     </div>
 @endsection

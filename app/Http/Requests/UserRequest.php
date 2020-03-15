@@ -38,7 +38,6 @@ class UserRequest extends FormRequest
             'avatar'=>[
                'mimes:jpeg,png,jpg,gif'
             ]
-            
         ];
     }
 }
