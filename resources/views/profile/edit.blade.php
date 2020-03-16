@@ -61,9 +61,9 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
-                                <a href="#">
-                                    <img onerror="this.src='{{ asset('storage/uploads/avatars/default.png')}}'" src="{{ asset('storage/uploads/avatars/'.auth()->user()->avatar_id) }}" class="rounded-circle">
-                                </a>
+<a href='#'><img alt="Image placeholder" onerror="this.src='{{ asset('storage/uploads/avatars/default.png')}}'" src="{{ asset('storage/uploads/avatars/'.auth()->user()->avatar_id) }}"></a>
+
+                       
                             </div>
                         </div>
                     </div>
@@ -85,6 +85,7 @@
 <div id="Personal" class="tabcontent">
   <table >
                         <tr>
+                        
                             <td>Name:   </td>
                             <td>{{ auth()->user()->name }}</td>
                         </tr>
