@@ -28,7 +28,7 @@
                             <legend class="heading-small text-muted mb-4" >Personal information</legend>
                                 <div class="form-group{{ $errors->has('avatar') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-avatar">{{ __('Avatar') }}</label>
-                                    <input type="file" name="avatar" id="input-avatar" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" >
+                                    <input type="file" name="avatar" id="input-avatar" class="form-control form-control-alternative{{ $errors->has('avatar') ? ' is-invalid' : '' }}" >
 
                                     @if ($errors->has('avatar'))
                                         <span class="invalid-feedback" role="alert">

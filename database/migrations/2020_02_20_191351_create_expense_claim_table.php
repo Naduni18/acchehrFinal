@@ -17,8 +17,8 @@ class CreateExpenseClaimTable extends Migration
             $table->bigIncrements('claim_id');
             $table->date('date');
             $table->String('reason');
-            $table->decimal('amount',10,2);
-            $table->integer('bill_id');
+            $table->double('amount',10,2);
+            $table->String('bill_id');
             $table->bigInteger('request_by')->unsigned();//emp_id
             $table->bigInteger('approved_by')->unsigned();//emp_id
             $table->enum('status', ['approved','rejected','pending'])->default('pending');

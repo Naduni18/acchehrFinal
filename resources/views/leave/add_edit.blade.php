@@ -9,14 +9,18 @@
                 <div class="card bg-white shadow">
                     <div class="card-body">
 
-      <form id="addEventForm" method="post" action="{{ route('leave.store') }}" autocomplete="off">
+      <form id="addEventForm" method="post" enctype="multipart/form-data" action="{{ route('leave.store') }}" autocomplete="off">
                             @csrf
                             <div class="pl-lg-4">
                             <input type="text" name="leave_id_" id="input-leave_id" hidden>
 
+                            <div class="form-group{{ $errors->has('leave_document') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-leave_document">{{ __('Document') }}</label>
+                                    <input type="file" name="leave_document" id="input-leave_document" class="form-control form-control-alternative{{ $errors->has('leave_document') ? ' is-invalid' : '' }}" >
+                                </div>
                                 <div class="form-group{{ $errors->has('reason') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-reason">{{ __('Reason') }}</label>
-                                    <input type="text" name="reason" id="input-reason" class="form-control form-control-alternative{{ $errors->has('reason') ? ' is-invalid' : '' }}" placeholder="{{ __('Reason') }}" value="{{ old('reason') }}" required autofocus>
+                                    <input type="text" name="reason" id="input-reason" class="form-control form-control-alternative{{ $errors->has('reason') ? ' is-invalid' : '' }}" placeholder="{{ __('Reason') }}" required autofocus>
 
                                     @if ($errors->has('reason'))
                                         <span class="invalid-feedback" role="alert">
@@ -27,7 +31,7 @@
                 
                                 <div class="form-group{{ $errors->has('start') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-start">{{ __('Start date') }}</label>
-                                    <input type="date" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start date') }}" value="{{ old('start') }}" autofocus>
+                                    <input type="date" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start date') }}" autofocus>
 
                                     @if ($errors->has('start'))
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +41,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('end') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-end">{{ __('End date') }}</label>
-                                    <input type="date" name="end" id="input-end" class="form-control form-control-alternative{{ $errors->has('end') ? ' is-invalid' : '' }}" placeholder="{{ __('End date') }}" value="{{ old('end') }}" autofocus>
+                                    <input type="date" name="end" id="input-end" class="form-control form-control-alternative{{ $errors->has('end') ? ' is-invalid' : '' }}" placeholder="{{ __('End date') }}"  autofocus>
 
                                     @if ($errors->has('end'))
                                         <span class="invalid-feedback" role="alert">

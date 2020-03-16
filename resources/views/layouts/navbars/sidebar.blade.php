@@ -102,7 +102,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('expenseClaim') }}">
                         <i class="fas fa-calculator text-primary"></i> {{ __('Expense claim') }}
                     </a>
                 </li>
@@ -173,11 +173,6 @@
                     </a>
                 </li> 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.index') }}">
-                        <i class="fas fa-user-plus text-primary"></i> {{ __('View Employees') }}
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-user-plus text-primary"></i> {{ __('rate your employees') }}
                     </a>
@@ -187,29 +182,9 @@
                         <i class="fas fa-user-plus text-primary"></i> {{ __('Manage salary') }}
                     </a>
                 </li>
-              <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user-plus text-primary"></i> {{ __('View Leave request') }}
-                    </a>
-                </li>
-                       <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user-plus text-primary"></i> {{ __('View OT request') }}
-                    </a>
-                </li>
-                       <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user-plus text-primary"></i> {{ __('View Expense claim request') }}
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-user-plus text-primary"></i> {{ __('Attendance summary') }}
-                    </a>
-                </li>
-                       <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user-plus text-primary"></i> {{ __('Manage Employee calenders') }}
                     </a>
                 </li>
                     </ul>   

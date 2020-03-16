@@ -84,7 +84,8 @@ class HomeController extends Controller
                 'assigned_by'=>$id,
                 'assigned_to'=>$assigned_to,
                 'location'=>$request->location,
-                'notes'=>$request->notes
+                'notes'=>$request->notes,
+                'created_at'=>now(),
             ],
         ]);
 
