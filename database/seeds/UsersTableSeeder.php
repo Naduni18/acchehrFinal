@@ -35,6 +35,7 @@ class UsersTableSeeder extends Seeder
             'next_kin_phone_home'=>'0754896289',
             'next_kin_address'=>'wsxc',
             'user_role'=>'admin',
+            'supervisor_manager'=>'1',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -61,6 +62,7 @@ class UsersTableSeeder extends Seeder
             'next_kin_phone_home'=>'0754896289',
             'next_kin_address'=>'wsxc',
             'user_role'=>'manager',
+            'supervisor_manager'=>'1',
             'created_at' => now(),
             'updated_at' => now()
         ]);

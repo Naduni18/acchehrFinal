@@ -24,7 +24,7 @@ class EditUserController extends Controller
     if($image!=null){
         $avatar_name = $request->get('NIC').'.'.$image->getClientOriginalExtension();
         $folder = '/uploads/avatars/';
-        $filePath = $folder . $avatar_name;
+       // $filePath = $folder . $avatar_name;
         $this->uploadOne($image, $folder, 'public', $avatar_name);
     }else{
         $avatar_name = null;  
@@ -57,7 +57,7 @@ class EditUserController extends Controller
 
         )
     );
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'.$avatar_name.''.$request->user_id_.''));
+        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
 
      /**
@@ -76,7 +76,7 @@ class EditUserController extends Controller
 
         $avatar_name = $request->get('NIC').'.'.$image->getClientOriginalExtension();
         $folder = '/uploads/avatars/';
-        $filePath = $folder . $avatar_name;
+       // $filePath = $folder . $avatar_name;
         $this->uploadOne($image, $folder, 'public', $avatar_name);
 
         DB::table('users')->insert([

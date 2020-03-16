@@ -15,7 +15,7 @@ class CreateLeaveRequestsTable extends Migration
     {
         Schema::create('leave_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('document_id')->nullable();
+            $table->string('document_id')->nullable();
             $table->string('reason');
             $table->date('start');
             $table->date('end');

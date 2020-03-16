@@ -133,6 +133,7 @@ class EditEventController extends Controller
                 'assigned_to'=>$assigned_to,
                 'location'=>$request->location,
                 'notes'=>$request->notes,
+                'updated_at'=>now(),
             )
         );
 

@@ -68,6 +68,7 @@ class MissingAttendanceController extends Controller
                 'end'=>$request->end,
                 'request_by'=>auth()->id(),
                 'manger_to_approve'=>auth()->user()->supervisor_manager,
+                'created_at'=>now(),
             ],
         ]);
         }else{
@@ -79,6 +80,7 @@ class MissingAttendanceController extends Controller
                 'end'=>$request->end,
                 'request_by'=>auth()->id(),
                 'manger_to_approve'=>auth()->user()->supervisor_manager,
+                'updated_at'=>now(),
                 )
             );
     
