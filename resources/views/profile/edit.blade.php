@@ -3,8 +3,8 @@
 @section('content')
     @include('users.partials.header', [
         'title' => __('Hello') . ' '. auth()->user()->name,
-        'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects or assigned tasks'),
-        'class' => 'col-lg-7'
+        'description' => __('This is your profile page.'),
+        'class' => 'col-lg-12'
     ])   
     <style>
 * {box-sizing: border-box}
@@ -51,6 +51,7 @@
   border-left: none;
  
 }
+.tables tr { line-height: 35px; }
 
 </style>
     <div class="container-fluid mt--7" >
@@ -74,7 +75,7 @@
                     
 
 <div class="tab">
-  <button class="tablinks" onclick="openTaby(event, 'Personal')" >Personal Details</button>
+  <button class="tablinks" onclick="openTaby(event, 'Personal')" active >Personal Details</button>
   <button class="tablinks" onclick="openTaby(event, 'Bank')">Bank Details</button>
   <button class="tablinks" onclick="openTaby(event, 'Next_kin')">Next Kin Details</button>
   <button class="tablinks" onclick="openTaby(event, 'Work')">Work Details</button>
@@ -82,8 +83,8 @@
  <button class="tablinks" onclick="openTaby(event, 'Skill')">Skill Ratings</button>
 </div>
 
-<div id="Personal" class="tabcontent">
-  <table >
+<div id="Personal" class="tabcontent" style="display:block;">
+  <table class="tables" style="width:80%;hight:100%;text-align:left">
                         <tr>
                         
                             <td>Name:   </td>
@@ -102,7 +103,7 @@
                             <td>{{ auth()->user()->email }}</td>
                         </tr>
                         <tr>
-                            <td>Birtdday:   </td>
+                            <td>Birthday:   </td>
                             <td>{{ auth()->user()->birtdday }}</td>  
                         </tr>
                         <tr>
@@ -133,9 +134,9 @@
 
 </div>
 
-<div id="Bank" class="tabcontent">
+<div id="Bank" class="tabcontent" style="display:none;">
   
-  <table style="width:80%:text-align:center">
+  <table class="tables" style="width:80%;hight:100%;text-align:left">
  
                         <tr>
                             <td>Bank:   </td>
@@ -148,9 +149,9 @@
                         <tr></table> 
 </div>
 
-<div id="Next_kin" class="tabcontent">
+<div id="Next_kin" class="tabcontent" style="display:none;">
   
-  <table style="width:80%:text-align:center">
+  <table class="tables" style="width:80%;hight:100%;text-align:left">
   
                         <tr>
                             <td>Name:   </td>
@@ -180,9 +181,9 @@
                         </table>
 
 </div>
-<div id="Work" class="tabcontent"></div>
-                    <div id="Benefits" class="tabcontent"></div>
-                    <div id="Skill" class="tabcontent"></div>
+<div id="Work" class="tabcontent" style="display:none;"></div>
+                    <div id="Benefits" class="tabcontent" style="display:none;"></div>
+                    <div id="Skill" class="tabcontent" style="display:none;"></div>
                     </div>
                     </div>
                 </div>

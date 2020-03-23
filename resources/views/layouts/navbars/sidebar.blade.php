@@ -96,20 +96,20 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('trainingSchedule') }}">
                         <i class="fas fa-calendar-alt text-primary"></i> {{ __('Training schedule') }}
                     </a>
                 </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('expenseClaim') }}">
-                        <i class="fas fa-calculator text-primary"></i> {{ __('Expense claim') }}
+                        <i class="fas fa-calculator text-primary"></i> {{ __('Expense claims') }}
                     </a>
                 </li>
           
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('advance_requests')}}">
-                        <i class="far fa-clock text-primary"></i> {{ __('Advance payment request') }}
+                    <a class="nav-link" href="{{ route('advance_payment')}}">
+                        <i class="far fa-clock text-primary"></i> {{ __('Advance payments') }}
                     </a>
                 </li>
                 

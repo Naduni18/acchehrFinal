@@ -10,21 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group(['middleware' => 'guest'], function () {
 Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes();
 
+});
 
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('storage/{filename}', function ($filename) {
         return Storage::get($filename);
     });
+    Auth::routes();
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('profile.edit');
+    });
     Route::resource('user', 'UserController', ['except' => ['show']]);
     
     Route::post('/edit_user/update', 'EditUserController@update')->name('edit_user.update');
@@ -38,9 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/home/delete', 'HomeController@delete')->name('home.delete');
     Route::post('/editEvent', 'EditEventController@index')->name('editEvent');
     Route::post('/editEvent/store', 'EditEventController@store')->name('editEvent.store');
-    
-
-    Route::get('/advance_requests', 'AdvanceRequestsController@index')->name('advance_requests');
   
     Route::get('/attendance', 'MissingAttendanceController@index')->name('attendance');
     Route::post('/attendance/store', 'MissingAttendanceController@store')->name('attendance.store');
@@ -71,6 +73,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/expenseClaim/index2', 'ExpenseClaimRequestController@index2')->name('expenseClaim.index2');
     Route::get('/expenseClaim/download_file/{file_name}', 'ExpenseClaimRequestController@download_file')->name('expenseClaim.download_file');
     
-    
+    Route::get('/trainingSchedule', 'TrainingScheduleController@index')->name('trainingSchedule');
+    Route::post('/trainingSchedule/store', 'TrainingScheduleController@store')->name('trainingSchedule.store');
+    Route::post('/trainingSchedule/delete', 'TrainingScheduleController@delete')->name('trainingSchedule.delete');
+    Route::post('/trainingScheduleEdit', 'TrainingScheduleEditController@index')->name('trainingScheduleEdit');
+    Route::post('/trainingScheduleEdit/store', 'TrainingScheduleEditController@store')->name('trainingScheduleEdit.store');
+
+    Route::get('/advance_payment', 'AdvanceRequestsController@index')->name('advance_payment');
+    Route::post('/advance_payment/store', 'AdvanceRequestsController@store')->name('advance_payment.store');
+    Route::post('/advance_payment/destroy', 'AdvanceRequestsController@destroy')->name('advance_payment.destroy');
+    Route::post('/advance_payment/update', 'AdvanceRequestsController@update')->name('advance_payment.update');
+    Route::post('/advance_payment/approve', 'AdvanceRequestsController@approve')->name('advance_payment.approve');
+    Route::post('/advance_payment/reject', 'AdvanceRequestsController@reject')->name('advance_payment.reject');
+
+    Route::post('/advance_payment/index2', 'AdvanceRequestsControllerr@index2')->name('advance_payment.index2');
 });
 

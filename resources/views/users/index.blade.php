@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('User Management')])
 
 @section('content')
-    @include('layouts.headers.cards')
+    @include('layouts.headers.plane')
 
     <div class="container-fluid mt--7">
         <div class="row">

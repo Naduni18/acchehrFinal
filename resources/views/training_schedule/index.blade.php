@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.headers.cards')
+    @include('layouts.headers.plane')
     
     <div class="container-fluid mt--7">
         <div class="row">
@@ -28,8 +28,8 @@
       </div>
       <div class="modal-footer">
       @can('isManager')
-        <button id="edit_btn"  type="submit" formaction="{{ route('editEvent') }}" name="edit" class="btn btn-primary" style="visibility:hidden;">Edit event</button>
-        <button id="delete_btn" type="submit" name="delete" formaction="{{ route('home.delete') }}" class="btn btn-primary" style="visibility:hidden;">Delete Event</button>
+        <button id="edit_btn"  type="submit" formaction="{{ route('trainingScheduleEdit') }}" name="edit" class="btn btn-primary" style="visibility:hidden;">Edit event</button>
+        <button id="delete_btn" type="submit" name="delete" formaction="{{ route('trainingSchedule.delete') }}" class="btn btn-primary" style="visibility:hidden;">Delete Event</button>
         @endcan  
       <button id="close_btn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </form>
@@ -47,10 +47,10 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Add New Event</h4>
+        <h4 class="modal-title">Add New Training Session</h4>
       </div>
       <div class="modal-body">
-      <form id="addEventForm" method="post" action="{{ route('home.store') }}" autocomplete="off">
+      <form id="addEventForm" method="post" action="{{ route('trainingSchedule.store') }}" autocomplete="off">
                             @csrf
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
@@ -63,19 +63,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-description">{{ __('Description') }}</label>
-                                    <input type="text" name="description" id="input-description" class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Description') }}" value="{{ old('description') }}"  autofocus>
-
-                                    @if ($errors->has('description'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('description') }}</strong>
-                                        </span>
-                                    @endif
-                                </div> 
-                                
-                                <fieldset name="recur_" style="border:groove;padding:5px;">
-                                <legend style="font-size:12px;">  &nbsp&nbsp&nbsp&nbsp Non-recurring event (set this values only for a non recurring event)</legend>
+                                 
                                 <div class="form-group{{ $errors->has('start') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-start">{{ __('Start') }}</label>
                                     <input type="datetime-local" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start') }}" value="{{ old('start') }}" autofocus>
@@ -88,53 +76,10 @@
 
                                     
                                 </div>
-                                </fieldset>
-                                <fieldset name="nonrecur_" style="border:groove;padding:5px;">
-                                <div class="form-group{{ $errors->has('startTime') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-startTime">{{ __('Start Time') }}</label>
-                                    <input type="time" name="startTime" id="input-startTime" class="form-control form-control-alternative{{ $errors->has('startTime') ? ' is-invalid' : '' }}" placeholder="{{ __('Start Time') }}" value="{{ old('startTime') }}" autofocus>
-
-                                    
-                                </div>
-                                <div class="form-group{{ $errors->has('endTime') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-endTime">{{ __('End Time') }}</label>
-                                    <input type="time" name="endTime" id="input-endTime" class="form-control form-control-alternative{{ $errors->has('endTime') ? ' is-invalid' : '' }}" placeholder="{{ __('End Time') }}" value="{{ old('endTime') }}" autofocus>
-
-                                </div>
-                                <legend style="font-size:12px;">  &nbsp&nbsp&nbsp&nbsp Recurring event (set this values only if event is recurring)</legend>
-                                <div class="form-group{{ $errors->has('startRecur') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-startRecur">{{ __('Start Recurring') }}</label>
-                                    <input type="date" name="startRecur" id="input-startRecur" class="form-control form-control-alternative{{ $errors->has('startRecur') ? ' is-invalid' : '' }}" placeholder="{{ __('Start Recurring') }}" value="{{ old('startRecur') }}" autofocus>
-
-                                    
-                                </div>
-                                <div class="form-group{{ $errors->has('endRecur') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-endRecur">{{ __('End Recurring') }}</label>
-                                    <input type="date" name="endRecur" id="input-endRecur" class="form-control form-control-alternative{{ $errors->has('endRecur') ? ' is-invalid' : '' }}" placeholder="{{ __('End Recurring') }}" value="{{ old('endRecur') }}" autofocus>
-
-                                    
-                                </div>
-                                <div class="form-group{{ $errors->has('daysOfWeek') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-daysOfWeek">{{ __('Days') }}</label>
-                                    <select multiple size="7" name="daysOfWeek[]" id="input-daysOfWeek" class="form-control form-control-alternative{{ $errors->has('daysOfWeek') ? ' is-invalid' : '' }}" placeholder="{{ __('days Of Week') }}"   autofocus>
-  
-                                    <option value="0">Sunday</option>
-                                    <option value="1">Monday</option>
-                                    <option value="2">Tuesday</option>
-                                    <option value="3">Wednesday</option>
-                                    <option value="4">Thursday</option>
-                                    <option value="5">Friday</option>
-                                    <option value="6">Saturday</option>
-
-                                    
-                                    </select>
-                                   
-                                </div>
-                                </fieldset>
-                            
+                               
                                 <div class="form-group{{ $errors->has('assignesto') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-assignesto">{{ __('Assignes to') }}</label>
-                                    <select multiple size="3" name="assignesto[]" id="input-assignesto" class="form-control form-control-alternative{{ $errors->has('assignesto') ? ' is-invalid' : '' }}" placeholder="{{ __('Assignes to') }}"  autofocus>
+                                    <select multiple size="3" name="assignesto[]" id="input-assignesto" class="form-control form-control-alternative{{ $errors->has('assignesto') ? ' is-invalid' : '' }}" placeholder="{{ __('Assignes to') }}"  required autofocus>
 
                                     @foreach($assignees_array as $key)
                                      
@@ -144,9 +89,21 @@
                                     </select>
                                     
                                 </div>
+                                <div class="form-group{{ $errors->has('conducted_by') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-conducted_by">{{ __('Conducted by') }}</label>
+                                    <select name="conducted_by" id="input-conducted_by" class="form-control form-control-alternative{{ $errors->has('conducted_by') ? ' is-invalid' : '' }}" placeholder="{{ __('Assignes to') }}"  required autofocus>
+
+                                    @foreach($assignees_array as $key)
+                                     
+                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
+
+                                    @endforeach
+                                    </select>
+                        
+                                </div>
                                 <div class="form-group{{ $errors->has('location') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-location">{{ __('location') }}</label>
-                                    <input type="text" name="location" id="input-location" class="form-control form-control-alternative{{ $errors->has('location') ? ' is-invalid' : '' }}" placeholder="{{ __('location') }}" value="{{ old('location') }}"  autofocus>
+                                    <input type="text" name="location" id="input-location" class="form-control form-control-alternative{{ $errors->has('location') ? ' is-invalid' : '' }}" placeholder="{{ __('location') }}" value="{{ old('location') }}" required autofocus>
 
                                     @if ($errors->has('location'))
                                         <span class="invalid-feedback" role="alert">
@@ -156,7 +113,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('notes') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-notes">{{ __('notes') }}</label>
-                                    <input type="text" name="notes" id="input-notes" class="form-control form-control-alternative{{ $errors->has('notes') ? ' is-invalid' : '' }}" placeholder="{{ __('notes') }}" value="{{ old('notes') }}" autofocus>
+                                    <input type="text" name="notes" id="input-notes" class="form-control form-control-alternative{{ $errors->has('notes') ? ' is-invalid' : '' }}" placeholder="{{ __('notes') }}" value="{{ old('notes') }}" required autofocus>
 
                                     @if ($errors->has('notes'))
                                         <span class="invalid-feedback" role="alert">
@@ -215,9 +172,9 @@ startTime: '09:00', // a start time
 endTime: '16:00', // an end time 
 },
     views: {
-      listDay: { buttonText: 'Todays events' },
-      listWeek: { buttonText: 'This week events' },
-      listMonth: { buttonText: 'This month events' }
+      listDay: { buttonText: 'Todays training sessions' },
+      listWeek: { buttonText: 'This week training sessions' },
+      listMonth: { buttonText: 'This month training sessions' }
     },
     footer:{
       center: 'listDay listWeek listMonth'
@@ -231,28 +188,16 @@ endTime: '16:00', // an end time
 eventSources: [
 {
 events:{!! $ce !!},
-id:'assigned_by_user',
-color: '#ff7eb3',//pink
-},
-{
-events:{!! $ce2 !!},
-id:'assigned_to_user',
-color: '#66a6ff',//light blue
-},
-{
-events:{!! $ce3 !!},
-id:'no_assignees',
-color: '#9dff00',//green
+id:'personal',
 },
 { 
 googleCalendarId: 'en.lk#holiday@group.v.calendar.google.com',
 id:'google',
-color: '#fffb00',//yellow
 }
 ],
 customButtons: {
     addEventButton: {
-      text: 'Add Event',
+      text: 'Add Training Session ',
       click: function() {
         $( "#addEventModel" ).modal('toggle');
       }

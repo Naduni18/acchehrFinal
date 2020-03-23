@@ -16,13 +16,16 @@ class CreateTrainingScheduleTable extends Migration
         Schema::create('training_schedule', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->dateTime('date_time');
+            $table->datetime('start');
+            $table->datetime('end');
+            $table->bigInteger('assigned_by')->nullable()->unsigned();//empId
             $table->bigInteger('conducted_by')->nullable()->unsigned();//empId
             $table->string('assigned_to')->nullable();
             $table->string('location')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();
             $table->foreign('conducted_by')->references('id')->on('users');
+            $table->foreign('assigned_by')->references('id')->on('users');
         });
     }
 

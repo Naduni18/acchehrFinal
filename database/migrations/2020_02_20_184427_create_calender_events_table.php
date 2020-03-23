@@ -18,10 +18,10 @@ class CreateCalenderEventsTable extends Migration
             $table->bigIncrements('id');
             $table->String('title');
             $table->string('description')->nullable();
-            $table->date('start')->nullable();
-            $table->date('end')->nullable();
-            $table->time('startTime');
-            $table->time('endTime');
+            $table->datetime('start')->nullable();
+            $table->datetime('end')->nullable();
+            $table->time('startTime')->nullable();
+            $table->time('endTime')->nullable();
             $table->date('startRecur')->nullable();
             $table->date('endRecur')->nullable();
             $table->uuid('groupId')->nullable();

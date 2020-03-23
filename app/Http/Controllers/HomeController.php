@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Uuid;
 
 
+
 class HomeController extends Controller
 {
     /**
@@ -27,14 +28,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-       
-        $calender_events = DB::table('calender_events')->get();
+        $id = auth()->id();
+        $calender_events = DB::table('calender_events')->where('assigned_by', '=', $id)->get();//assigned by user
+
+        $calender_events2 = DB::table('calender_events')->where('assigned_to', 'like', '%'.$id.'%' )->where('assigned_by', '!=', $id)->get();//assigned to user
+
+        $calender_events3 = DB::table('calender_events')->where('assigned_to', '=', null )->where('assigned_by', '!=', $id)->get();// not assigned to anyone
 
         $ce = $calender_events->toJson();
+        $ce2 = $calender_events2->toJson();
+        $ce3 = $calender_events3->toJson();
 
-        $assignees_array = DB::table('users')->select('id','name')->get();
-        
-       return view('dashboard',  compact('ce','assignees_array'));
+        $assignees_array = DB::table('users')->select('id','name')->where('id', '!=', $id)->get();
+ 
+       return view('dashboard',  compact('ce','ce2','ce3','assignees_array'));
       
        
     }
@@ -47,23 +54,31 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         
-        $id = auth()->id();
+       $id = auth()->id();
        $uuid = null;
+       $days_Of_Week_array=null;
 
-        $assigned_to='';
+        
+        $array = (array)$request->assignest;
+        if(count($array)!=0){
+            $assigned_to='';
         foreach($request->assignesto as $key){
 
             $assigned_to=strval($key).','.$assigned_to;
 
         }
-        $days_Of_Week='';
-        
+    }else{
+        $assigned_to=null;
+    }
+        if($request->daysOfWeek!= null){
+            $days_Of_Week='';
         foreach($request->daysOfWeek as $key){
 
             $days_Of_Week=strval($key).','.$days_Of_Week;
 
         }
         $days_Of_Week_array='['.$days_Of_Week.']';
+    }
         if($request->startRecur!=null){
             $uuid = Uuid::generate()->string;
         }

@@ -46,6 +46,45 @@
                                     @endif
                                 </div>
                                 
+                                
+                                <fieldset style="border:groove;padding:5px;">
+                                <legend style="font-size:12px;">  &nbsp&nbsp&nbsp&nbsp One day event (set this values only for one day event)</legend>
+                                
+                                <div class="form-group{{ $errors->has('start') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-start">{{ __('Start') }}</label>
+                                    <div class="row">
+                                    <div class="col">
+                                    <input type="datetime-local" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start') }}"  autofocus>
+                                    </div>
+                                    <div class="col">
+                                    <p style="font-size:14px;padding: 10px;">Current Start date: {{ $old_event['start'] }}</p>
+                                    </div>
+                                    </div>
+                                    @if ($errors->has('start'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('start') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('end') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-end">{{ __('End') }}</label>
+                                    <div class="row">
+                                    <div class="col">
+                                    <input type="datetime-local" name="end" id="input-end" class="form-control form-control-alternative{{ $errors->has('end') ? ' is-invalid' : '' }}" placeholder="{{ __('End') }}"  autofocus>
+                                    </div>
+                                    <div class="col">
+                                    <p style="font-size:14px;padding: 10px;">Current End date: {{ $old_event['end'] }}</p>
+                                    </div>
+                                    </div>
+                                    @if ($errors->has('end'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('end') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                </fieldset>
+                                <fieldset style="border:groove;padding:5px;">
+                                <legend style="font-size:12px;">  &nbsp&nbsp&nbsp&nbsp Recurring event (set this values if event is recurring)</legend>
                                 <div class="form-group{{ $errors->has('startTime') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-startTime">{{ __('Start Time') }}</label>
                                     <div class="row">
@@ -78,45 +117,6 @@
                                         </span>
                                     @endif
                                 </div>
-                                <fieldset style="border:groove;padding:5px;">
-                                <legend style="font-size:12px;">  &nbsp&nbsp&nbsp&nbsp One day event (set this values only for one day event)</legend>
-                                
-                                <div class="form-group{{ $errors->has('start') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-start">{{ __('Start') }}</label>
-                                    <div class="row">
-                                    <div class="col">
-                                    <input type="date" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start') }}"  autofocus>
-                                    </div>
-                                    <div class="col">
-                                    <p style="font-size:14px;padding: 10px;">Current Start date: {{ $old_event['start'] }}</p>
-                                    </div>
-                                    </div>
-                                    @if ($errors->has('start'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('start') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="form-group{{ $errors->has('end') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-end">{{ __('End') }}</label>
-                                    <div class="row">
-                                    <div class="col">
-                                    <input type="date" name="end" id="input-end" class="form-control form-control-alternative{{ $errors->has('end') ? ' is-invalid' : '' }}" placeholder="{{ __('End') }}"  autofocus>
-                                    </div>
-                                    <div class="col">
-                                    <p style="font-size:14px;padding: 10px;">Current End date: {{ $old_event['end'] }}</p>
-                                    </div>
-                                    </div>
-                                    @if ($errors->has('end'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('end') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                </fieldset>
-                                <fieldset style="border:groove;padding:5px;">
-                                <legend style="font-size:12px;">  &nbsp&nbsp&nbsp&nbsp Recurring event (set this values if event is recurring)</legend>
-                                
                                 <div  class="form-group{{ $errors->has('startRecur') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-startRecur">{{ __('Start Recurring') }}</label>
                                     <div class="row">
