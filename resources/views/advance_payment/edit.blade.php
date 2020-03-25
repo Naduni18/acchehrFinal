@@ -12,73 +12,64 @@
       <form id="addEventForm" method="post" enctype="multipart/form-data" action="{{ route('advance_payment.store') }}" autocomplete="off">
                             @csrf
                             <div class="pl-lg-4">
-                            <input type="text" name="leave_id_" id="input-leave_id" hidden>
+                            <input type="text" name="advance_id_" id="input-advance_id" hidden>
 
-                            <div class="form-group{{ $errors->has('leave_document') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-leave_document">{{ __('Document') }}</label>
-                                    <input type="file" name="leave_document" id="input-leave_document" class="form-control form-control-alternative{{ $errors->has('leave_document') ? ' is-invalid' : '' }}" >
-                                </div>
-                                <div class="form-group{{ $errors->has('reason') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-reason">{{ __('Reason') }}</label>
-                                    <input type="text" name="reason" id="input-reason" class="form-control form-control-alternative{{ $errors->has('reason') ? ' is-invalid' : '' }}" placeholder="{{ __('Reason') }}" required autofocus>
+                            
+                                <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-amount">{{ __('Amount') }}</label>
+                                    <input type="number" step=".01" min="0" name="amount" id="input-amount" class="form-control form-control-alternative{{ $errors->has('amount') ? ' is-invalid' : '' }}" required autofocus>
 
-                                    @if ($errors->has('reason'))
+                                    @if ($errors->has('amount'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('reason') }}</strong>
+                                            <strong>{{ $errors->first('amount') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                 
-                                <div class="form-group{{ $errors->has('start') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-start">{{ __('Start date') }}</label>
-                                    <input type="date" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start date') }}" autofocus>
+                                <div class="form-group{{ $errors->has('notes') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-notes">{{ __('Notes') }}</label>
+                                    <input type="text" name="notes" id="input-notes" class="form-control form-control-alternative{{ $errors->has('notes') ? ' is-invalid' : '' }}" placeholder="{{ __('notes') }}" autofocus>
 
-                                    @if ($errors->has('start'))
+                                    @if ($errors->has('notes'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('start') }}</strong>
+                                            <strong>{{ $errors->first('notes') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('end') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-end">{{ __('End date') }}</label>
-                                    <input type="date" name="end" id="input-end" class="form-control form-control-alternative{{ $errors->has('end') ? ' is-invalid' : '' }}" placeholder="{{ __('End date') }}"  autofocus>
+                                <div class="form-group{{ $errors->has('for_year') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-for_year">{{ __('For year') }}</label>
+                                    <input type="number" min="2020" name="for_year" id="input-for_year" class="form-control form-control-alternative{{ $errors->has('for_year') ? ' is-invalid' : '' }}" placeholder="{{ __('For year') }}" required autofocus>
 
-                                    @if ($errors->has('end'))
+                                    @if ($errors->has('for_year'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('end') }}</strong>
+                                            <strong>{{ $errors->first('for_year') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('category') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-category">{{ __('Category') }}</label>
+                                
+                                <div class="form-group{{ $errors->has('for_month') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-for_month">{{ __('For month') }}</label>
                                     
-                                    <select name="category" id="input-category" class="form-control form-control-alternative{{ $errors->has('category') ? ' is-invalid' : '' }}" placeholder="{{ __('Category') }}"   autofocus>
+                                    <select name="for_month" id="input-for_month" class="form-control form-control-alternative{{ $errors->has('for_month') ? ' is-invalid' : '' }}" required autofocus>
   
-                                    <option value="full day">Full day</option>
-                                    <option value="half day">Half day</option>
-                                    <option value="short leave">Short leave</option>
-           
-                                    </select>
-                                    
-                                    @if ($errors->has('category'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('category') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="form-group{{ $errors->has('type') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-type">{{ __('Type') }}</label>
-                                    
-                                    <select name="type" id="input-type" class="form-control form-control-alternative{{ $errors->has('type') ? ' is-invalid' : '' }}" placeholder="{{ __('Type') }}"   autofocus>
-  
-                                    <option value="no pay">No pay</option>
-                                    <option value="casual">Casual</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
                  
                                     </select>
                                     
-                                    @if ($errors->has('type'))
+                                    @if ($errors->has('for_month'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('type') }}</strong>
+                                            <strong>{{ $errors->first('for_month') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -100,20 +91,20 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    var leave_id = @json($leaveid);
+    var advance_id = @json($advanceid);
     var val = @json('add');
     
-    if(leave_id!=val){
-        var values=@json($leave_req);
-        $("#input-reason").val(values.reason);     
-        $("#input-start").val(values.start);
+    if(advance_id!=val){
+        var values=@json($advance_req);
+        $("#input-amount").val(values.amount);     
+        $("#input-notes").val(values.notes);
         $("#input-end").val(values.end);
         $("#input-category").val(values.category);
         $("#input-type").val(values.type);
        
        
     }
-    $("#input-leave_id").val(leave_id);
+    $("#input-advance_id").val(advance_id);
       
 });
 

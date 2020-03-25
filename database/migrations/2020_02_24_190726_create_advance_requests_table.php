@@ -14,16 +14,17 @@ class CreateAdvanceRequestsTable extends Migration
     public function up()
     {
         Schema::create('advance_requests', function (Blueprint $table) {
+
             $table->bigIncrements('id');
-            $table->bigInteger('emp_id')->unsigned();
+            $table->bigInteger('request_by')->unsigned();//emp_id
             $table->bigInteger('approved_by')->unsigned();//emp_id
             $table->decimal('amount',10,2);
             $table->String('notes')->nullable();
             $table->enum('status', ['approved','rejected','pending'])->default('pending');
             $table->year('for_year');
-            $table->enum('for_month', ['January','February','March','April','May','June','July','August','September','November','December'])->default('January');
+            $table->enum('for_month', ['January','February','March','April','May','June','July','August','September','October','November','December'])->default('January');
             $table->timestamps();
-            $table->foreign('emp_id')->references('id')->on('users');
+            $table->foreign('request_by')->references('id')->on('users');
             $table->foreign('approved_by')->references('id')->on('users');
         });
     }

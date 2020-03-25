@@ -168,7 +168,7 @@
                     <div class="collapse" id="navbar-five">
                       <ul class="nav nav-sm flex-column">
               <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('recruitment') }}">
                         <i class="fas fa-user-plus text-primary"></i> {{ __('Recruitment') }}
                     </a>
                 </li> 
@@ -183,7 +183,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('dailyAttendance') }}">
                         <i class="fas fa-user-plus text-primary"></i> {{ __('Attendance summary') }}
                     </a>
                 </li>

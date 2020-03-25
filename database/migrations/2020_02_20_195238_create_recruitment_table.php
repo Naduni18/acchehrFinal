@@ -15,18 +15,16 @@ class CreateRecruitmentTable extends Migration
     {
         Schema::create('recruitment', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cv_id');
+            $table->string('cv_id');
             $table->string('name',100);
             $table->string('NIC',12)->unique();
             $table->string('email',100)->unique();
-            $table->string('applied_job_position',250);
+            $table->string('applied_job_position',250)->nullable();
             $table->datetime('first_interview_date')->nullable();
             $table->datetime('second_interview_date')->nullable();
-            $table->bigInteger('interviewer')->unsigned();
-            $table->string('notes',250);
-            $table->enum('cv_processing_result', ['not_selected','selected'])->default('selected')->nullable();
-            $table->enum('first_interview_result', ['pass', 'fail','pending'])->default('pending')->nullable();
-            $table->enum('current_state', ['cv_selected', 'first_interview_pass'])->default('cv_selected');
+            $table->bigInteger('interviewer')->unsigned()->nullable();
+            $table->string('notes',250)->nullable();
+            $table->enum('current_status', ['cv_selected','keeping_cv_for_future_vacancies', 'first_interview_passed','second_interview_passed'])->default('cv_selected');
             $table->timestamps();
             $table->foreign('interviewer')->references('id')->on('users');
         });

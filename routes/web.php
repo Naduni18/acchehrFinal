@@ -86,6 +86,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/advance_payment/approve', 'AdvanceRequestsController@approve')->name('advance_payment.approve');
     Route::post('/advance_payment/reject', 'AdvanceRequestsController@reject')->name('advance_payment.reject');
 
-    Route::post('/advance_payment/index2', 'AdvanceRequestsControllerr@index2')->name('advance_payment.index2');
+    Route::post('/advance_payment/index2', 'AdvanceRequestsController@index2')->name('advance_payment.index2');
+
+    Route::get('/dailyAttendance', 'DailyAttendanceController@index')->name('dailyAttendance');
+    Route::post('/dailyAttendance/import', 'DailyAttendanceController@import')->name('dailyAttendance.import');
+    Route::get('/dailyAttendance/export', 'DailyAttendanceController@export')->name('dailyAttendance.export');
+    Route::get('/dailyAttendance/export_this_month', 'DailyAttendanceController@export_this_month')->name('dailyAttendance.export_this_month');
+
+    Route::get('/recruitment', 'RecruitmentController@index')->name('recruitment');
+    Route::post('/recruitment/store', 'RecruitmentController@store')->name('recruitment.store');
+    Route::post('/recruitment/destroy', 'RecruitmentController@destroy')->name('recruitment.destroy');
+    Route::post('/recruitment/update', 'RecruitmentController@update')->name('recruitment.update');
+
+    Route::post('/recruitment/index2', 'RecruitmentController@index2')->name('recruitment.index2');
+    Route::get('/recruitment/download_file/{file_name}', 'RecruitmentController@download_file')->name('recruitment.download_file');
 });
 
