@@ -100,5 +100,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/recruitment/index2', 'RecruitmentController@index2')->name('recruitment.index2');
     Route::get('/recruitment/download_file/{file_name}', 'RecruitmentController@download_file')->name('recruitment.download_file');
+
+    Route::get('/salaryManagements', 'SalaryManagementsController@index')->name('salaryManagements');
+    Route::get('/salaryManagements/export', 'SalaryManagementsController@export')->name('salaryManagements.export');
 });
 
