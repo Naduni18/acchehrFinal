@@ -119,32 +119,6 @@
                         <i class="fas fa-briefcase text-primary"></i> {{ __('Leave') }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#navbar-four" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-1">
-                        <i class="fas fa-money-bill-wave text-primary"></i>
-                        <span class="nav-link-text">{{ __('Salary') }}</span>
-                    </a>
-
-                    <div class="collapse" id="navbar-four">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                            
-                            <a class="nav-link"  href="#">
-                            <i class="fas fa-hand-holding-usd text-primary"></i>
-                            <span class="nav-link-text"> {{ __('Increments') }}</span>
-                                </a>
-                                
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                <i class="fas fa-file-invoice-dollar text-primary"></i>
-                            <span class="nav-link-text"> 
-                                    {{ __('Monthly pay slips') }}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
                 @can('isAdmin')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.create') }}">
