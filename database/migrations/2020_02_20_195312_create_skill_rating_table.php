@@ -17,12 +17,12 @@ class CreateSkillRatingTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('emp_id')->unsigned();
             $table->bigInteger('rated_by')->unsigned();
-            $table->integer('file_receivings');
-            $table->integer('offers');
-            $table->integer('visa_grants');
-            $table->integer('IELTS_class_registrations');
-            $table->integer('IELTS_exam_registrations');
-            $table->integer('total_kpi');
+            $table->integer('file_receivings')->nullable();
+            $table->integer('offers')->nullable();
+            $table->integer('visa_grants')->nullable();
+            $table->integer('IELTS_class_registrations')->nullable();
+            $table->integer('IELTS_exam_registrations')->nullable();
+            $table->integer('total_kpi')->nullable();
             $table->timestamps();
             $table->foreign('emp_id')->references('id')->on('users');
             $table->foreign('rated_by')->references('id')->on('users');

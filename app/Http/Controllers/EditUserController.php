@@ -107,6 +107,15 @@ class EditUserController extends Controller
             'created_at'=>now(),
             ],
         ]);  
+$nic=$request->NIC;
+$emp = DB::table('users')->where([['NIC', '=', $nic],])->first();
+$emp_id =$emp->id;
+        DB::table('skill_rating')->insert([
+            [
+                'emp_id'=>$emp_id,
+                'rated_by'=>$request->supervisor_manager,
+            ],
+            ]);  
     }else{
         DB::table('users')->insert([
             [

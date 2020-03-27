@@ -103,5 +103,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/salaryManagements', 'SalaryManagementsController@index')->name('salaryManagements');
     Route::get('/salaryManagements/export', 'SalaryManagementsController@export')->name('salaryManagements.export');
+
+    Route::get('/skill_rating', 'SkillRatingController@index')->name('skill_rating');
+    Route::post('/skill_rating/index2', 'SkillRatingController@index2')->name('skill_rating.index2');
+    Route::post('/skill_rating/store', 'SkillRatingController@store')->name('skill_rating.store');
 });
 

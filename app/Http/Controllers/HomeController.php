@@ -59,7 +59,7 @@ class HomeController extends Controller
        $days_Of_Week_array=null;
 
         
-        $array = (array)$request->assignest;
+        $array = (array)$request->assignesto;
         if(count($array)!=0){
             $assigned_to='';
         foreach($request->assignesto as $key){

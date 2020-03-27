@@ -147,7 +147,7 @@
                     </a>
                 </li> 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('skill_rating') }}">
                         <i class="fas fa-user-plus text-primary"></i> {{ __('rate your employees') }}
                     </a>
                 </li>

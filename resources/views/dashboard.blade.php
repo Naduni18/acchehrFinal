@@ -164,7 +164,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <p id='test'></p>
+                                
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary mt-4">{{ __('Save') }}</button>
                                     <button id="close" type="button" class="btn btn-primary mt-4" data-dismiss="modal">Close</button>
