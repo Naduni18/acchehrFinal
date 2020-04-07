@@ -232,31 +232,33 @@ eventSources: [
 {
 events:{!! $ce !!},
 id:'assigned_by_user',
-color: '#ff7eb3',//pink
+color: '#2dce8a',//green
 },
 {
 events:{!! $ce2 !!},
 id:'assigned_to_user',
-color: '#66a6ff',//light blue
+color: '#7668e3',//blue
 },
 {
 events:{!! $ce3 !!},
 id:'no_assignees',
-color: '#9dff00',//green
+color: '#fc6341',//orange
 },
 { 
 googleCalendarId: 'en.lk#holiday@group.v.calendar.google.com',
 id:'google',
-color: '#fffb00',//yellow
+color: '#ffd600',//yellow
 }
 ],
 customButtons: {
+@can('isManager')
     addEventButton: {
       text: 'Add Event',
       click: function() {
         $( "#addEventModel" ).modal('toggle');
       }
     }
+@endcan
   },
   eventLimit: true,
 eventClick: function(info) {

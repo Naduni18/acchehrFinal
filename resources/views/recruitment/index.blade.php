@@ -19,7 +19,7 @@
                     <div class="row"> 
                     <div class="col d-flex justify-content-end">                  
                     <button formaction="{{ route('recruitment.index2') }}" name="add" type="submit" class="btn btn-primary" >
-                    {{ __('Add new Request') }}
+                    {{ __('Add new Candidate') }}
                     </button>
                     </div>
                     </div>

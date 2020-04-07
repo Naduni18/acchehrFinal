@@ -24,6 +24,12 @@
         <link type="text/css" href="{{ asset('@fullcalendar') }}/list/main.css" rel="stylesheet">
 
         <link type="text/css" href="{{ asset('@fullcalendar') }}/timegrid/main.css" rel="stylesheet">
+       <!-- <link type="text/css" href="{{ asset('bootstrap-table') }}/dist/bootstrap-table.min.css" rel="stylesheet">
+       <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+       <link type="text/css" href="{{ asset('datatables.net-dt') }}/css/jquery.dataTables.css" rel="stylesheet">-->
+       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -59,7 +65,10 @@
         <script src="{{ asset('@fullcalendar') }}/moment/main.js"></script>
         <script src="{{ asset('@fullcalendar') }}/rrule/main.js"></script>
         <script src="{{ asset('@fullcalendar') }}/google-calendar/main.js"></script>
+      <!--  <script src="{{ asset('bootstrap-table') }}/dist/bootstrap-table.min.js"></script>
+      <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+      <script src="{{ asset('datatables.net-dt') }}/js/dataTables.dataTables.js"></script>-->
         
-<script>
+
     </body>
 </html>

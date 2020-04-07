@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Salary_managements;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SalaryManagementsController extends Controller
 {
@@ -14,7 +14,7 @@ class SalaryManagementsController extends Controller
      */
     public function index()
     {
-        $salary = Salary_managements::all();
+        $salary = DB::table('salary_managements')->get();
 
         return view('salary_management.index')->with('salary', $salary);
     }
@@ -24,7 +24,7 @@ class SalaryManagementsController extends Controller
      */
     public function export()
     {
-        return Excel::download(new SalaryManagementExport(), 'salary.xlsx');
+        //return Excel::download(new SalaryManagementExport(), 'salary.xlsx');
     }
     /**
      * Show the form for creating a new resource.

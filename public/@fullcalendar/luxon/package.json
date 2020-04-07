@@ -1,29 +1,33 @@
 {
-  "_from": "@fullcalendar/luxon",
+  "_args": [
+    [
+      "@fullcalendar/luxon@4.4.0",
+      "C:\\xampp\\htdocs\\ACCHEHR"
+    ]
+  ],
+  "_from": "@fullcalendar/luxon@4.4.0",
   "_id": "@fullcalendar/luxon@4.4.0",
   "_inBundle": false,
   "_integrity": "sha512-lL+7eRvmXW2oxTeX2NLT2kbiWQoIlqBTX2cy4FI3LQDfl9nb7/fhtlDeMeOCQgWnpwOq4iLe048XRO2NhbDi+A==",
   "_location": "/@fullcalendar/luxon",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/luxon",
+    "raw": "@fullcalendar/luxon@4.4.0",
     "name": "@fullcalendar/luxon",
     "escapedName": "@fullcalendar%2fluxon",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.4.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.4.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/luxon/-/luxon-4.4.0.tgz",
-  "_shasum": "6877dcd91dafac4628a97c0e2c73412df744cfce",
-  "_spec": "@fullcalendar/luxon",
-  "_where": "C:\\xampp\\htdocs\\ACCHE_HR",
+  "_spec": "4.4.0",
+  "_where": "C:\\xampp\\htdocs\\ACCHEHR",
   "author": {
     "name": "Adam Shaw",
     "email": "arshaw@arshaw.com",
@@ -32,9 +36,7 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
-  "deprecated": false,
   "description": "A connector to the Luxon date library",
   "docs": "https://fullcalendar.io/docs/luxon-plugin",
   "homepage": "https://fullcalendar.io/",

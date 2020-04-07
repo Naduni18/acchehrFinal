@@ -1,29 +1,33 @@
 {
-  "_from": "@fullcalendar/moment",
+  "_args": [
+    [
+      "@fullcalendar/moment@4.4.0",
+      "C:\\xampp\\htdocs\\ACCHEHR"
+    ]
+  ],
+  "_from": "@fullcalendar/moment@4.4.0",
   "_id": "@fullcalendar/moment@4.4.0",
   "_inBundle": false,
   "_integrity": "sha512-sW2F7z0E1+kBvBduGiXVYJtIWj2AWeUQQoiLA+xgprsyljzigwnI+9J2iviaB9uL7LIbCSnPrOZmhpVTufmPvQ==",
   "_location": "/@fullcalendar/moment",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/moment",
+    "raw": "@fullcalendar/moment@4.4.0",
     "name": "@fullcalendar/moment",
     "escapedName": "@fullcalendar%2fmoment",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.4.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.4.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/moment/-/moment-4.4.0.tgz",
-  "_shasum": "a83a4340427aedc46bc5216164465ecd595e839b",
-  "_spec": "@fullcalendar/moment",
-  "_where": "C:\\xampp\\htdocs\\ACCHE_HR",
+  "_spec": "4.4.0",
+  "_where": "C:\\xampp\\htdocs\\ACCHEHR",
   "author": {
     "name": "Adam Shaw",
     "email": "arshaw@arshaw.com",
@@ -32,9 +36,7 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
-  "deprecated": false,
   "description": "A connector to the MomentJS date library",
   "docs": "https://fullcalendar.io/docs/moment-plugins",
   "homepage": "https://fullcalendar.io/",

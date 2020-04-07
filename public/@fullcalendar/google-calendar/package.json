@@ -1,29 +1,33 @@
 {
-  "_from": "@fullcalendar/google-calendar",
+  "_args": [
+    [
+      "@fullcalendar/google-calendar@4.4.0",
+      "C:\\xampp\\htdocs\\ACCHEHR"
+    ]
+  ],
+  "_from": "@fullcalendar/google-calendar@4.4.0",
   "_id": "@fullcalendar/google-calendar@4.4.0",
   "_inBundle": false,
   "_integrity": "sha512-2OrrGG2uzlYwLFxf6cLCGvvAcfNU0DVC7t+PYKmfnma3pjvsGZvrpP2sE1G1OKntLAZUr/fWS/nbRoVYcYfdhg==",
   "_location": "/@fullcalendar/google-calendar",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/google-calendar",
+    "raw": "@fullcalendar/google-calendar@4.4.0",
     "name": "@fullcalendar/google-calendar",
     "escapedName": "@fullcalendar%2fgoogle-calendar",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.4.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.4.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/google-calendar/-/google-calendar-4.4.0.tgz",
-  "_shasum": "40bd1dcb0f85055d084584403bcb1da30f85d04d",
-  "_spec": "@fullcalendar/google-calendar",
-  "_where": "C:\\xampp\\htdocs\\ACCHE_HR",
+  "_spec": "4.4.0",
+  "_where": "C:\\xampp\\htdocs\\ACCHEHR",
   "author": {
     "name": "Adam Shaw",
     "email": "arshaw@arshaw.com",
@@ -32,9 +36,7 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
-  "deprecated": false,
   "description": "Fetch events from a public Google Calendar feed",
   "docs": "https://fullcalendar.io/docs/google-calendar",
   "homepage": "https://fullcalendar.io/",

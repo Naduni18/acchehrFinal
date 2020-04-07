@@ -180,6 +180,16 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="form-group{{ $errors->has('bank_number') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-bank_number">{{ __('Bank Account Number') }}</label>
+                                    <input type="text" pattern="[0-9A-Z-]{10,}" max="34" name="bank_number" id="input-bank_number" class="form-control form-control-alternative{{ $errors->has('bank_number') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank Account Number') }}"  autofocus>
+
+                                    @if ($errors->has('bank_number'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('bank_number') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 <div class="form-group{{ $errors->has('user_role') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-user_role">{{ __('Role') }}</label>
                                     <select  name="user_role" id="input-user_role" class="form-control form-control-alternative{{ $errors->has('user_role') ? ' is-invalid' : '' }}" required >

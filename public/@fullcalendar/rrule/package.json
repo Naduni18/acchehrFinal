@@ -1,29 +1,33 @@
 {
-  "_from": "@fullcalendar/rrule",
+  "_args": [
+    [
+      "@fullcalendar/rrule@4.4.0",
+      "C:\\xampp\\htdocs\\ACCHEHR"
+    ]
+  ],
+  "_from": "@fullcalendar/rrule@4.4.0",
   "_id": "@fullcalendar/rrule@4.4.0",
   "_inBundle": false,
   "_integrity": "sha512-pXe3kSShg9CQ5gr0J0IGMYAwVlBv6j9yotRfJUrCY7xUWNkqTLAmburW7Q7KNlDMOLuiFbM/twBYZYiIjjTWpg==",
   "_location": "/@fullcalendar/rrule",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/rrule",
+    "raw": "@fullcalendar/rrule@4.4.0",
     "name": "@fullcalendar/rrule",
     "escapedName": "@fullcalendar%2frrule",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.4.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.4.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/rrule/-/rrule-4.4.0.tgz",
-  "_shasum": "71dadef6adef5ea3732c7044e1244436c6864813",
-  "_spec": "@fullcalendar/rrule",
-  "_where": "C:\\xampp\\htdocs\\ACCHE_HR",
+  "_spec": "4.4.0",
+  "_where": "C:\\xampp\\htdocs\\ACCHEHR",
   "author": {
     "name": "Adam Shaw",
     "email": "arshaw@arshaw.com",
@@ -32,9 +36,7 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
-  "deprecated": false,
   "description": "A connector to the RRule library, for recurring events",
   "docs": "https://fullcalendar.io/docs/rrule-plugin",
   "homepage": "https://fullcalendar.io/",

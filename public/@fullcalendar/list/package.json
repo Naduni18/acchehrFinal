@@ -1,29 +1,33 @@
 {
-  "_from": "@fullcalendar/list",
+  "_args": [
+    [
+      "@fullcalendar/list@4.4.0",
+      "C:\\xampp\\htdocs\\ACCHEHR"
+    ]
+  ],
+  "_from": "@fullcalendar/list@4.4.0",
   "_id": "@fullcalendar/list@4.4.0",
   "_inBundle": false,
   "_integrity": "sha512-uUDSPS71czNTK5Z3x3HzeE3KIvqkCfvhY+mGFdaAL6+7VpCwEIfB6s3GIJOjzu9TONmczMk4jdq0b1WUFLY5PQ==",
   "_location": "/@fullcalendar/list",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/list",
+    "raw": "@fullcalendar/list@4.4.0",
     "name": "@fullcalendar/list",
     "escapedName": "@fullcalendar%2flist",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.4.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.4.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/list/-/list-4.4.0.tgz",
-  "_shasum": "8edab49d06903b7de0ca68eefc1d44d0a58860a9",
-  "_spec": "@fullcalendar/list",
-  "_where": "C:\\xampp\\htdocs\\ACCHE_HR",
+  "_spec": "4.4.0",
+  "_where": "C:\\xampp\\htdocs\\ACCHEHR",
   "author": {
     "name": "Adam Shaw",
     "email": "arshaw@arshaw.com",
@@ -32,9 +36,7 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
-  "deprecated": false,
   "description": "View your events as a bulleted list",
   "docs": "https://fullcalendar.io/docs/list-view",
   "homepage": "https://fullcalendar.io/",

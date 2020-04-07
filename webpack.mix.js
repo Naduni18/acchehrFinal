@@ -13,6 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .copyDirectory('node_modules/@fullcalendar', 'public/@fullcalendar');
+    .copyDirectory('node_modules/@fullcalendar', 'public/@fullcalendar')
+    .copyDirectory('node_modules/datatables.net', 'public/datatables.net')
+    .copyDirectory('node_modules/datatables.net-dt', 'public/datatables.net-dt');
     
     

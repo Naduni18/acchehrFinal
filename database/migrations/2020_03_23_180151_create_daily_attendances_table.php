@@ -17,8 +17,11 @@ class CreateDailyAttendancesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('emp_id')->unsigned();
             $table->date('date');
-            $table->time('start');
-            $table->time('end');
+            $table->time('in_am')->nullable();
+            $table->time('out_am')->nullable();
+            $table->time('in_pm')->nullable();
+            $table->time('out_pm')->nullable();
+            $table->enum('status', ['Absence','presence'])->default('presence');
             $table->foreign('emp_id')->references('id')->on('users');
             $table->timestamps();
         });

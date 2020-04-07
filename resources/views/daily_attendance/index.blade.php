@@ -22,21 +22,30 @@
                         <div style="padding:10px;">
                             <form action="" enctype="multipart/form-data">
                                 <button formaction="{{ route('dailyAttendance.export') }}" class="btn btn-primary mt-4" type="submit">Download all attendance</button>
-                                <button formaction="{{ route('dailyAttendance.export_this_month') }}" class="btn btn-primary mt-4" type="submit">Download this month attendance</button>
+                                
                             </form> 
                         </div>
                     </div>
+                    
+                    <p>{{ session('val') }}</p>
+                   
                     <br/>
 <!-- implement search box to search by employee id/year/month -->
+
+
+<div style="height:600px;overflow:auto;">
     @if(count($dailyAttendance))
-        <table class="table table-bordered">
+        <table id="myTable" class="table align-items-center table-flush">
             <thead>
             <tr>
                 <td>ID</td>
                 <td>Employee id</td>
                 <td>Date</td>
-                <td>Start</td>
-                <td>End</td>
+                <td>Morning IN</td>
+                <td>Morning OUT</td>
+                <td>Afternoon IN</td>
+                <td>Afternoon OUT</td>
+                <td>Status</td>
             </tr>
             </thead>
             @foreach($dailyAttendance as $record)
@@ -44,24 +53,24 @@
                     <td>{{$record->id}}</td>
                     <td>{{$record->emp_id}}</td>
                     <td>{{$record->date}}</td>
-                    <td>{{$record->start}}</td>
-                    <td>{{$record->end}}</td>
+                    <td>{{$record->in_am}}</td>
+                    <td>{{$record->out_am}}</td>
+                    <td>{{$record->in_pm}}</td>
+                    <td>{{$record->out_pm}}</td>
+                    <td>{{$record->status}}</td>
                 </tr>
             @endforeach
         </table>
     @endif    
+    </div>
+    
+   
                     </div> 
                 </div>
             </div>
         </div>
     </div>
-<script>
 
-document.addEventListener('DOMContentLoaded', function() {
-      
-});
-
-</script>
         @include('layouts.footers.auth')
     </div>
 @endsection
