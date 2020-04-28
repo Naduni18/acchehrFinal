@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('branch');
             $table->string('bank')->nullable();
             $table->string('bank_number')->nullable();
+            $table->string('EPF_number')->nullable();
             $table->string('next_kin_name',100)->nullable();
             $table->string('next_kin_occupation',250)->nullable();
             $table->string('next_kin_office_address',250)->nullable();

@@ -29,9 +29,20 @@
                                     @endif
                                 </div>
                 
+                                <div class="form-group{{ $errors->has('date_') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-date_">{{ __('Date') }}</label>
+                                    <input type="date" name="date_" id="input-date_" class="form-control form-control-alternative{{ $errors->has('date_') ? ' is-invalid' : '' }}" placeholder="{{ __('date') }}" autofocus>
+
+                                    @if ($errors->has('date_'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('date_') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <div class="form-group{{ $errors->has('start') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-start">{{ __('Start date') }}</label>
-                                    <input type="date" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start date') }}" autofocus>
+                                    <label class="form-control-label" for="input-start">{{ __('Start time') }}</label>
+                                    <input type="time" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start date') }}" autofocus>
 
                                     @if ($errors->has('start'))
                                         <span class="invalid-feedback" role="alert">
@@ -40,8 +51,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('end') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-end">{{ __('End date') }}</label>
-                                    <input type="date" name="end" id="input-end" class="form-control form-control-alternative{{ $errors->has('end') ? ' is-invalid' : '' }}" placeholder="{{ __('End date') }}"  autofocus>
+                                    <label class="form-control-label" for="input-end">{{ __('End time') }}</label>
+                                    <input type="time" name="end" id="input-end" class="form-control form-control-alternative{{ $errors->has('end') ? ' is-invalid' : '' }}" placeholder="{{ __('End date') }}"  autofocus>
 
                                     @if ($errors->has('end'))
                                         <span class="invalid-feedback" role="alert">

@@ -166,6 +166,16 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="form-group{{ $errors->has('EPF_number') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-EPF_number">{{ __('EPF Number') }}</label>
+                                    <input type="text" name="EPF_number" id="input-EPF_number" class="form-control form-control-alternative{{ $errors->has('EPF_number') ? ' is-invalid' : '' }}" placeholder="{{ __('EPF Number') }}"  autofocus>
+
+                                    @if ($errors->has('EPF_number'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('EPF_number') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 <div class="form-group{{ $errors->has('user_role') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-user_role">{{ __('Role') }}</label>
                                     <select  name="user_role" id="input-user_role" class="form-control form-control-alternative{{ $errors->has('user_role') ? ' is-invalid' : '' }}" required >

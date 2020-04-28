@@ -45,6 +45,7 @@ class EditUserController extends Controller
             'branch'=>$request->branch,
             'bank'=>$request->bank,
             'bank_number'=>$request->bank_number,
+            'EPF_number'=>$request->EPF_number,
             'user_role'=>$request->user_role,
             'supervisor_manager'=>$request->supervisor_manager,
             'next_kin_name'=>$request->next_kin_name,
@@ -96,6 +97,7 @@ class EditUserController extends Controller
             'branch'=>$request->branch,
             'bank'=>$request->bank,
             'bank_number'=>$request->bank_number,
+            'EPF_number'=>$request->EPF_number,
             'user_role'=>$request->user_role,
             'supervisor_manager'=>$request->supervisor_manager,
             'next_kin_name'=>$request->next_kin_name,
@@ -107,15 +109,7 @@ class EditUserController extends Controller
             'created_at'=>now(),
             ],
         ]);  
-$nic=$request->NIC;
-$emp = DB::table('users')->where([['NIC', '=', $nic],])->first();
-$emp_id =$emp->id;
-        DB::table('skill_rating')->insert([
-            [
-                'emp_id'=>$emp_id,
-                'rated_by'=>$request->supervisor_manager,
-            ],
-            ]);  
+ 
     }else{
         DB::table('users')->insert([
             [
@@ -133,6 +127,7 @@ $emp_id =$emp->id;
             'branch'=>$request->branch,
             'bank'=>$request->bank,
             'bank_number'=>$request->bank_number,
+            'EPF_number'=>$request->EPF_number,
             'user_role'=>$request->user_role,
             'supervisor_manager'=>$request->supervisor_manager,
             'next_kin_name'=>$request->next_kin_name,
@@ -145,6 +140,15 @@ $emp_id =$emp->id;
             ],
         ]);  
         }
+        $nic=$request->NIC;
+$emp = DB::table('users')->where([['NIC', '=', $nic],])->first();
+$emp_id =$emp->id;
+        DB::table('skill_rating')->insert([
+            [
+                'emp_id'=>$emp_id,
+                'rated_by'=>$request->supervisor_manager,
+            ],
+            ]); 
     return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 

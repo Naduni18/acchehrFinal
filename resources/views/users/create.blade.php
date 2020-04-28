@@ -180,13 +180,13 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('bank_number') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-bank_number">{{ __('Bank Account Number') }}</label>
-                                    <input type="text" pattern="[0-9A-Z-]{10,}" max="34" name="bank_number" id="input-bank_number" class="form-control form-control-alternative{{ $errors->has('bank_number') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank Account Number') }}"  autofocus>
+                                <div class="form-group{{ $errors->has('EPF_number') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-EPF_number">{{ __('EPF Number') }}</label>
+                                    <input type="text" name="EPF_number" id="input-EPF_number" class="form-control form-control-alternative{{ $errors->has('EPF_number') ? ' is-invalid' : '' }}" placeholder="{{ __('EPF Number') }}"  autofocus>
 
-                                    @if ($errors->has('bank_number'))
+                                    @if ($errors->has('EPF_number'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('bank_number') }}</strong>
+                                            <strong>{{ $errors->first('EPF_number') }}</strong>
                                         </span>
                                     @endif
                                 </div>

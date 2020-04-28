@@ -18,13 +18,17 @@ class SalaryManagementsController extends Controller
 
         return view('salary_management.index')->with('salary', $salary);
     }
-
-    /**
-     * Export function
+ /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function export()
+    public function index2()
     {
-        //return Excel::download(new SalaryManagementExport(), 'salary.xlsx');
+        $id = auth()->id();
+        $salary = DB::table('salary_managements')->where('emp_id','=',$id)->first();
+
+        return view('salary_management.mySalary')->with('record', $salary);
     }
     /**
      * Show the form for creating a new resource.

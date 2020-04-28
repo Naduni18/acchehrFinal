@@ -68,7 +68,8 @@
       <!--  <script src="{{ asset('bootstrap-table') }}/dist/bootstrap-table.min.js"></script>
       <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
       <script src="{{ asset('datatables.net-dt') }}/js/dataTables.dataTables.js"></script>-->
-        
+
+       
 
     </body>
 </html>

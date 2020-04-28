@@ -63,6 +63,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/leave/index2', 'LeaveRequestController@index2')->name('leave.index2');
     Route::get('/leave/download_file/{file_name}', 'LeaveRequestController@download_file')->name('leave.download_file');
 
+    Route::get('/leave/index3', 'LeaveSummaryController@index3')->name('leave.index3');//for manager
+    Route::get('/leave/index4', 'LeaveSummaryController@index4')->name('leave.index4');//for admin
+
+
     Route::get('/expenseClaim', 'ExpenseClaimRequestController@index')->name('expenseClaim');
     Route::post('/expenseClaim/store', 'ExpenseClaimRequestController@store')->name('expenseClaim.store');
     Route::post('/expenseClaim/destroy', 'ExpenseClaimRequestController@destroy')->name('expenseClaim.destroy');
@@ -78,6 +82,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/trainingSchedule/delete', 'TrainingScheduleController@delete')->name('trainingSchedule.delete');
     Route::post('/trainingScheduleEdit', 'TrainingScheduleEditController@index')->name('trainingScheduleEdit');
     Route::post('/trainingScheduleEdit/store', 'TrainingScheduleEditController@store')->name('trainingScheduleEdit.store');
+
+    Route::get('/trainingScheduleSummary/index', 'TrainingScheduleSummarryController@index')->name('trainingScheduleSummary.index');
 
     Route::get('/advance_payment', 'AdvanceRequestsController@index')->name('advance_payment');
     Route::post('/advance_payment/store', 'AdvanceRequestsController@store')->name('advance_payment.store');
@@ -101,8 +107,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/recruitment/index2', 'RecruitmentController@index2')->name('recruitment.index2');
     Route::get('/recruitment/download_file/{file_name}', 'RecruitmentController@download_file')->name('recruitment.download_file');
 
-    Route::get('/salaryManagements', 'SalaryManagementsController@index')->name('salaryManagements');
-    Route::get('/salaryManagements/export', 'SalaryManagementsController@export')->name('salaryManagements.export');
+   // Route::get('/salaryManagements', 'SalaryManagementsController@index')->name('salaryManagements');
+   // Route::get('/salaryManagements/export', 'SalaryManagementsController@export')->name('salaryManagements.export');
 
     Route::get('/skill_rating', 'SkillRatingController@index')->name('skill_rating');
     Route::post('/skill_rating/index2', 'SkillRatingController@index2')->name('skill_rating.index2');

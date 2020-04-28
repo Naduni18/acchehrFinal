@@ -152,11 +152,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('salaryManagements') }}">
-                        <i class="fas fa-user-plus text-primary"></i> {{ __('Manage salary') }}
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('dailyAttendance') }}">
                         <i class="fas fa-user-plus text-primary"></i> {{ __('Attendance records') }}
                     </a>

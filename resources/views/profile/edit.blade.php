@@ -79,7 +79,6 @@
   <button class="tablinks" onclick="openTaby(event, 'Bank')">Bank Details</button>
   <button class="tablinks" onclick="openTaby(event, 'Next_kin')">Next Kin Details</button>
   <button class="tablinks" onclick="openTaby(event, 'Work')">Work Details</button>
- <button class="tablinks" onclick="openTaby(event, 'Benefits')">benefits & promotions</button>
  <button class="tablinks" onclick="openTaby(event, 'Skill')">Skill Ratings</button>
 </div>
 
@@ -90,10 +89,7 @@
                             <td>Name:   </td>
                             <td>{{ auth()->user()->name }}</td>
                         </tr>
-                        <tr>
-                            <td>Job Position:   </td>
-                            <td>{{ auth()->user()->current_job_position }}</td>
-                        </tr>
+                        
                         <tr>
                             <td>NIC:   </td>
                             <td>{{ auth()->user()->NIC }}</td>  
@@ -104,7 +100,7 @@
                         </tr>
                         <tr>
                             <td>Birthday:   </td>
-                            <td>{{ auth()->user()->birtdday }}</td>  
+                            <td>{{ auth()->user()->birthday }}</td>  
                         </tr>
                         <tr>
                             <td>Anniversary:   </td>
@@ -126,10 +122,7 @@
                             <td>Permanent address:   </td>
                             <td>{{ auth()->user()->address_permanent }}</td>
                         </tr>
-                        <tr>
-                            <td>Branch:   </td>
-                            <td>{{ auth()->user()->branch }}</td>
-                        </tr>
+                        
                         </table>
 
 </div>
@@ -144,7 +137,7 @@
                         </tr>
                         <tr>
                             <td>Bank account number:   </td>
-                            <td>{{ auth()->user()->bank_no }}</td>
+                            <td>{{ auth()->user()->bank_number }}</td>
                         </tr>
                         <tr></table> 
 </div>
@@ -181,8 +174,35 @@
                         </table>
 
 </div>
-<div id="Work" class="tabcontent" style="display:none;"></div>
-                    <div id="Benefits" class="tabcontent" style="display:none;"></div>
+<div id="Work" class="tabcontent" style="display:none;">
+                        <table class="tables" style="width:80%;hight:100%;text-align:left">
+                        <tr>
+                            <td>Job Position:   </td>
+                            <td>{{ auth()->user()->current_job_position }}</td>
+                        </tr>
+                        <tr>
+                            <td>Branch:   </td>
+                            <td>{{ auth()->user()->branch }}</td>
+                        </tr>
+                        <tr>
+                            <td>EPF number:   </td>
+                            <td>{{ auth()->user()->EPF_number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Role:   </td>
+                            <td>{{ auth()->user()->user_role }}</td>
+                        </tr>
+                        <tr>
+                            <td>Supervisor/Manager:   </td>
+                            <td>@php
+                                        $val =  \App\Http\Controllers\ProfileController::get_user_name(auth()->user()->supervisor_manager);
+                                        $jsonval =json_encode($val);
+                                        $finalval = json_decode($jsonval, true);
+                                        echo $finalval['name'];
+                                        @endphp</td>
+                        </tr>
+                        </table>
+</div>
                     <div id="Skill" class="tabcontent" style="display:none;"></div>
                     </div>
                     </div>

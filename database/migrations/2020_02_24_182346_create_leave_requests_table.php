@@ -17,8 +17,9 @@ class CreateLeaveRequestsTable extends Migration
             $table->bigIncrements('id');
             $table->string('document_id')->nullable();
             $table->string('reason');
-            $table->date('start');
-            $table->date('end');
+            $table->date('date_');
+            $table->time('start');
+            $table->time('end');
             $table->bigInteger('request_by')->unsigned();//emp_id
             $table->bigInteger('approved_by')->unsigned()->nullable();//emp_id
             $table->enum('status', ['approved','rejected','pending'])->default('pending');

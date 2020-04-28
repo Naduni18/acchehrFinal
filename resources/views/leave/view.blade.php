@@ -6,6 +6,21 @@
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-12 mb-5 mb-xl-0">
+            @can('isManager')
+            <div>
+            <a class="btn btn-success" href="{{ route('leave.index3') }}">
+            <i class="fas fa-chart-line"></i> {{ __('View Summarry') }}
+           </a>     
+            </div>
+            @endcan
+            @can('isAdmin')
+            <div>
+            <a class="btn btn-success" href="{{ route('leave.index4') }}">
+            <i class="fas fa-chart-line"></i> {{ __('View Summarry') }}
+           </a>     
+            </div>
+            @endcan
+            </br>
                 <div class="card bg-white shadow">
                     <div class="card-body">
 
@@ -32,8 +47,9 @@
                                 <tr>
                                     <th scope="col">{{ __('Document') }}</th>
                                     <th scope="col">{{ __('Reason') }}</th>
-                                    <th scope="col">{{ __('Start date') }}</th>
-                                    <th scope="col">{{ __('End date') }}</th>
+                                    <th scope="col">{{ __('Date') }}</th>
+                                    <th scope="col">{{ __('Start time') }}</th>
+                                    <th scope="col">{{ __('End time') }}</th>
                                     <th scope="col">{{ __('Status') }}</th>
                                     <th scope="col">{{ __('Category') }}</th>
                                     <th scope="col">{{ __('Type') }}</th>
@@ -51,6 +67,7 @@
 <td></td>
 @endif
                                         <td>{{ $leave_req->reason}}</td>
+                                        <td>{{ $leave_req->date_ }}</td>
                                         <td>{{ $leave_req->start }}</td>
                                         <td>{{ $leave_req->end }}</td>
                                         <td>{{ $leave_req->status }}</td>
@@ -111,8 +128,9 @@
                                 <tr>
                                     <th scope="col">{{ __('Document') }}</th>
                                     <th scope="col">{{ __('Reason') }}</th>
-                                    <th scope="col">{{ __('Start date') }}</th>
-                                    <th scope="col">{{ __('End date') }}</th>
+                                    <th scope="col">{{ __('Date') }}</th>
+                                    <th scope="col">{{ __('Start time') }}</th>
+                                    <th scope="col">{{ __('End time') }}</th>
                                     <th scope="col">{{ __('Status') }}</th>
                                     <th scope="col">{{ __('Category') }}</th>
                                     <th scope="col">{{ __('Type') }}</th>
@@ -131,6 +149,7 @@
 <td></td>
 @endif
                                         <td>{{ $leave_req->reason}}</td>
+                                        <td>{{ $leave_req->date_ }}</td>
                                         <td>{{ $leave_req->start }}</td>
                                         <td>{{ $leave_req->end }}</td>
                                         <td>{{ $leave_req->status }}</td>

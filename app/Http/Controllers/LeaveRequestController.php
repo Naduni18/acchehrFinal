@@ -80,6 +80,7 @@ class LeaveRequestController extends Controller
             [
                 'document_id'=>$leave_doc_name,
                 'reason' => $request->reason,
+                'date_'=>$request->date_,
                 'start' =>$request->start,
                 'end'=>$request->end,
                 'request_by'=>$id,
@@ -95,6 +96,7 @@ class LeaveRequestController extends Controller
                 array(
                     'document_id'=>$leave_doc_name,
                     'reason' => $request->reason,
+                    'date_'=>$request->date_,
                     'start' =>$request->start,
                     'end'=>$request->end,
                     'request_by'=>$id,

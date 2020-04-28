@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Uuid;
-
+use Carbon\Carbon;
 
 
 class HomeController extends Controller
@@ -40,8 +40,11 @@ class HomeController extends Controller
         $ce3 = $calender_events3->toJson();
 
         $assignees_array = DB::table('users')->select('id','name')->where('id', '!=', $id)->get();
- 
-       return view('dashboard',  compact('ce','ce2','ce3','assignees_array'));
+        $no_of_leaves=$this->no_of_leaves();
+        $no_of_absent_days=$this->no_of_absent_days();
+        $birthday_array=$this->birthdays();
+        $anniversary_array=$this->anniversarys();
+       return view('dashboard',  compact('ce','ce2','ce3','assignees_array','no_of_leaves','no_of_absent_days','birthday_array','anniversary_array'));
       
        
     }
@@ -121,6 +124,43 @@ class HomeController extends Controller
 
         return redirect()->to('/home'); 
         
+    }
+
+    public function no_of_leaves()
+    {
+        $id = auth()->id();
+        $now = Carbon::now();
+        $leaves_fullDay = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'full day')->whereMonth('date_', '=', $now->month)->count();
+        $leaves_halfDay = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'half day')->whereMonth('date_', '=', $now->month)->count();
+        $leaves_shortLeave = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'short leave')->whereMonth('date_', '=', $now->month)->count();
+        
+        $leave_balance = $leaves_fullDay +($leaves_halfDay/2)+($leaves_shortLeave/4);
+
+        return $leave_balance;
+    }
+
+    public function no_of_absent_days()
+    {
+        $id = auth()->id();
+        $now = Carbon::now();
+        $month_=$now->month;
+        $last_month=$month_-1;
+
+        $absent_days = DB::table('daily_attendances')->where('emp_id', '=', $id )->where('status', '=', 'Absence')->whereMonth('date', '=', $last_month)->count();
+         return $absent_days;  
+    }
+    public function birthdays()
+    {
+        $now = Carbon::now();
+        $birthdays = DB::table('users')->whereDate('birthday', '=', $now)->get();
+        return $birthdays;
+    }
+
+    public function anniversarys()
+    {
+        $now = Carbon::now();
+        $anniversarys = DB::table('users')->whereDate('anniversary', '=', $now)->get();
+        return $anniversarys;
     }
  
 }
