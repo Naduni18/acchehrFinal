@@ -44,6 +44,8 @@ class MissingAttendanceController extends Controller
         $attid=$request->requestId;
         DB::table('missing_attendance')->where('id', '=',  $attid)->update(['status' => 'approved']);
 
+        
+
         return redirect()->to('/attendance');    
     }
 

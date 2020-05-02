@@ -35,7 +35,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('start') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-start">{{ __('Start') }}</label>
+                                    <label class="form-control-label" for="input-start">{{ __('Start(morning in)') }}</label>
                                     <input type="time" name="start" id="input-start" class="form-control form-control-alternative{{ $errors->has('start') ? ' is-invalid' : '' }}" placeholder="{{ __('Start') }}" value="{{ old('start') }}" autofocus>
 
                                     @if ($errors->has('start'))
@@ -45,7 +45,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('end') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-end">{{ __('End') }}</label>
+                                    <label class="form-control-label" for="input-end">{{ __('End(afternoon out)') }}</label>
                                     <input type="time" name="end" id="input-end" class="form-control form-control-alternative{{ $errors->has('end') ? ' is-invalid' : '' }}" placeholder="{{ __('End') }}" value="{{ old('end') }}" autofocus>
 
                                     @if ($errors->has('end'))
