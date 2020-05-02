@@ -34,7 +34,7 @@
 
 
 <div style="height:600px;overflow:auto;">
-    @if(count($dailyAttendance))
+    
         <table id="myTable" class="table align-items-center table-flush">
             <thead>
             <tr>
@@ -48,6 +48,7 @@
                 <td>Status</td>
             </tr>
             </thead>
+            @if(count($dailyAttendance))
             @foreach($dailyAttendance as $record)
                 <tr>
                     <td>{{$record->id}}</td>
@@ -60,8 +61,20 @@
                     <td>{{$record->status}}</td>
                 </tr>
             @endforeach
+            @else
+            <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            @endif 
         </table>
-    @endif    
+      
     </div>
     
    

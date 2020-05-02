@@ -23,8 +23,28 @@
         {
             $id = auth()->id();
             $employees_array=DB::table('users')->where([['supervisor_manager', '=', $id],])->get();
+ 
+            $emp_rating_array=array();
+            foreach($employees_array as $u){
+                $uid=$u->id;
+                $uname=$u->name;
+
+                $employee_rating=DB::table('skill_rating')->where([['emp_id', '=', $uid],])->first();
+                if($employee_rating!=null){
+                array_push($emp_rating_array,array(
+                    'name'=>$uname,
+                    'file_receivings' => $employee_rating->file_receivings,
+                    'offers' => $employee_rating->offers,
+                    'visa_grants'=> $employee_rating->visa_grants,
+                    'IELTS_class_registrations'=> $employee_rating->IELTS_class_registrations,
+                    'IELTS_exam_registrations'=> $employee_rating->IELTS_exam_registrations,
+                    'total_kpi'=> $employee_rating->total_kpi,
+                ));
+            }
+            }
       
-            return view('skill_rating.index',  compact('employees_array'));
+
+            return view('skill_rating.index',  compact('employees_array','emp_rating_array'));
           
            
         }

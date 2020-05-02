@@ -13,7 +13,7 @@
                                           
                     @method('post')
                     <div class="form-group{{ $errors->has('employeeTorate') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-employeeTorate">{{ __('Employee list') }}</label>
+                                    <label class="form-control-label" for="input-employeeTorate">{{ __('Select employee to rate:') }}</label>
                                     <select  name="employeeTorate" id="input-employeeTorate" class="form-control form-control-alternative{{ $errors->has('employeeTorate') ? ' is-invalid' : '' }}" placeholder="{{ __('Assignes to') }}"  autofocus>
 
                                     @foreach($employees_array as $key)
@@ -29,6 +29,38 @@
                                 </div>
                             </div>
       </form>
+      <br> 
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush" id="empratetable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">{{ __('Name') }}</th>
+                                    <th scope="col">{{ __('File Receivings') }}</th>
+                                    <th scope="col">{{ __('Offers') }}</th>
+                                    <th scope="col">{{ __('Visa Grants') }}</th>
+                                    <th scope="col">{{ __('IELTS Class Registrations') }}</th>
+                                    <th scope="col">{{ __('IELTS Exam Registrations') }}</th>
+                                    <th scope="col">{{ __('Total KPI') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($emp_rating_array as $emp_rating)
+                               
+                                    <tr>
+                                        <td>{{ $emp_rating->name}}</td>
+                                        <td>{{ $emp_rating->file_receivings }}</td>
+                                        <td>{{ $emp_rating->offers }}</td>
+                                        <td>{{ $emp_rating->visa_grants }}</td>
+                                        <td>{{ $emp_rating->IELTS_class_registrations }}</td>
+                                        <td>{{ $emp_rating->IELTS_exam_registrations }}</td>
+                                        <td>{{ $emp_rating->total_kpi }}</td>
+                                        
+                                       
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        </div>
                     </div>
                 </div>
             </div>

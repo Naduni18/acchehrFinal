@@ -16,7 +16,10 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('profile.edit');
+        $user_skill_rating=null;
+        $id = auth()->id();
+        $user_skill_rating=DB::table('skill_rating')->where([['emp_id', '=', $id],])->first();
+        return view('profile.edit',  compact('user_skill_rating'));
     }
 
     /**

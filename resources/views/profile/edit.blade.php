@@ -139,7 +139,7 @@
                             <td>Bank account number:   </td>
                             <td>{{ auth()->user()->bank_number }}</td>
                         </tr>
-                        <tr></table> 
+                        </table> 
 </div>
 
 <div id="Next_kin" class="tabcontent" style="display:none;">
@@ -203,7 +203,59 @@
                         </tr>
                         </table>
 </div>
-                    <div id="Skill" class="tabcontent" style="display:none;"></div>
+                    <div id="Skill" class="tabcontent" style="display:none;">
+                    <table class="tables" style="width:80%;hight:100%;text-align:left">
+ 
+ <tr>
+     <td>File receivings:   </td>
+     @if(isset($user_skill_rating) && $user_skill_rating != null)
+     <td>{{ $user_skill_rating->file_receivings }}</td> 
+     @else
+     <td></td>
+     @endif 
+ </tr>
+ <tr>
+     <td>Offers:   </td>
+     @if(isset($user_skill_rating) && $user_skill_rating != null)
+     <td>{{ $user_skill_rating->offers }}</td>
+     @else
+     <td></td>
+     @endif 
+ </tr>
+ <tr>
+     <td>Visa grants:   </td>
+     @if(isset($user_skill_rating) && $user_skill_rating != null)
+     <td>{{ $user_skill_rating->visa_grants }}</td> 
+     @else
+     <td></td>
+     @endif  
+ </tr>
+ <tr>
+     <td>IELTS class registrations:   </td>
+     @if(isset($user_skill_rating) && $user_skill_rating != null)
+     <td>{{ $user_skill_rating->IELTS_class_registrations }}</td>
+     @else
+     <td></td>
+     @endif 
+ </tr>
+ <tr>
+     <td>IELTS exam registrations:   </td>
+     @if(isset($user_skill_rating) && $user_skill_rating != null)
+     <td>{{ $user_skill_rating->IELTS_exam_registrations }}</td>
+     @else
+     <td></td>
+     @endif   
+ </tr>
+ <tr>
+     <td>Total KPI:   </td>
+     @if(isset($user_skill_rating) && $user_skill_rating != null)
+     <td>{{ $user_skill_rating->total_kpi }}</td>
+     @else
+     <td></td>
+     @endif 
+ </tr>
+ </table> 
+                    </div>
                     </div>
                     </div>
                 </div>
