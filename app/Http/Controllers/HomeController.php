@@ -130,9 +130,9 @@ class HomeController extends Controller
     {
         $id = auth()->id();
         $now = Carbon::now();
-        $leaves_fullDay = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'full day')->whereMonth('date_', '=', $now->month)->count();
-        $leaves_halfDay = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'half day')->whereMonth('date_', '=', $now->month)->count();
-        $leaves_shortLeave = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'short leave')->whereMonth('date_', '=', $now->month)->count();
+        $leaves_fullDay = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'full day')->whereYear('date_','=',$now)->whereMonth('date_', '=', $now->month)->count();
+        $leaves_halfDay = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'half day')->whereYear('date_','=',$now)->whereMonth('date_', '=', $now->month)->count();
+        $leaves_shortLeave = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'short leave')->whereYear('date_','=',$now)->whereMonth('date_', '=', $now->month)->count();
         
         $leave_balance = $leaves_fullDay +($leaves_halfDay/2)+($leaves_shortLeave/4);
 
@@ -146,7 +146,7 @@ class HomeController extends Controller
         $month_=$now->month;
         $last_month=$month_-1;
 
-        $absent_days = DB::table('daily_attendances')->where('emp_id', '=', $id )->where('status', '=', 'Absence')->whereMonth('date', '=', $last_month)->count();
+        $absent_days = DB::table('daily_attendances')->where('emp_id', '=', $id )->where('status', '=', 'Absence')->whereYear('date','=',$now)->whereMonth('date', '=', $last_month)->count();
          return $absent_days;  
     }
     public function birthdays()

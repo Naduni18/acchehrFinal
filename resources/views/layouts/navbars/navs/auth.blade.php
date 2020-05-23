@@ -27,7 +27,7 @@
                         <i class="ni ni-settings-gear-65"></i>
                         <span>{{ __('Dashboard') }}</span>
                     </a>
-                    <a href="#" class="dropdown-item">
+                    <a href="{{ route('help') }}" class="dropdown-item">
                         <i class="ni ni-support-16"></i>
                         <span>{{ __('Help!') }}</span>
                     </a>

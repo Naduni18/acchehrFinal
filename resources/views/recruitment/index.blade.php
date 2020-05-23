@@ -48,7 +48,7 @@
                                
                                     <tr>
                                     @if($recruitment_record->cv_id != null)
-<td><a href="{{ route('recruitment.download_file',$recruitment_record->cv_id) }}" d
+<td><a href="{{ route('recruitment.download_file',$recruitment_record->cv_id) }}" >
 <span class="btn-inner--icon"><img width="24" height="24" src="{{ asset('argon') }}/img/icons/common/file-download-solid.svg"></span></a></td>
 @else
 <td></td>

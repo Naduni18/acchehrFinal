@@ -99,6 +99,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dailyAttendance/export', 'DailyAttendanceController@export')->name('dailyAttendance.export');
     Route::get('/dailyAttendance/export_this_month', 'DailyAttendanceController@export_this_month')->name('dailyAttendance.export_this_month');
 
+    Route::get('/dailyAttendanceSummary/index', 'DailyAttendanceSummaryController@index')->name('dailyAttendanceSummary.index');
+
     Route::get('/recruitment', 'RecruitmentController@index')->name('recruitment');
     Route::post('/recruitment/store', 'RecruitmentController@store')->name('recruitment.store');
     Route::post('/recruitment/destroy', 'RecruitmentController@destroy')->name('recruitment.destroy');
@@ -113,5 +115,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/skill_rating', 'SkillRatingController@index')->name('skill_rating');
     Route::post('/skill_rating/index2', 'SkillRatingController@index2')->name('skill_rating.index2');
     Route::post('/skill_rating/store', 'SkillRatingController@store')->name('skill_rating.store');
+
+    Route::get('/help', 'HelpController@index')->name('help');
+    Route::get('/help/download_file_pdf', 'HelpController@download_file_pdf')->name('help.download_file_pdf');
+    Route::get('/help/download_file_docx', 'HelpController@download_file_docx')->name('help.download_file_docx');
 });
 

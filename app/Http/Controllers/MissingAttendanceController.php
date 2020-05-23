@@ -25,7 +25,7 @@ class MissingAttendanceController extends Controller
     }
     public static function get_user_name($user_id)
     {
-        $user_=DB::table('users')->select('name')->where([['id', '=', $user_id],])->first();
+        $user_=DB::table('users')->select('name')->where('id', '=', $user_id)->first();
         
         return $user_;
     }
@@ -44,8 +44,41 @@ class MissingAttendanceController extends Controller
         $attid=$request->requestId;
         DB::table('missing_attendance')->where('id', '=',  $attid)->update(['status' => 'approved']);
 
-        
+        $missing_att_record=DB::table('missing_attendance')->where('id', '=',  $attid)->first();
 
+        $missing_att_date=$missing_att_record->date;
+        $missing_att_in=$missing_att_record->start;
+        $missing_att_out=$missing_att_record->end;
+        $missing_att_empid=$missing_att_record->request_by;
+
+        $dailyAttendance_record = DB::table('daily_attendances')->where('emp_id', '=',  $missing_att_empid)->whereDate('date', '=',  $missing_att_date)->first();
+
+        if($dailyAttendance_record==null){
+
+            DB::table('daily_attendances')->insertOrIgnore([
+                [
+                    'emp_id' =>$missing_att_empid,
+                    'date' =>$missing_att_date,
+                    'in_am'=>$missing_att_in,
+                    'out_pm' =>$missing_att_out,
+                    'status'=>'presence',
+                    'created_at'=>now(),
+                ],
+            ]);
+
+        }else{
+
+            $record_id=$dailyAttendance_record->id;
+            DB::table('daily_attendances')->where('id', '=', $record_id)->update([
+                [
+                    'date' =>$missing_att_date,
+                    'in_am'=>$missing_att_in,
+                    'out_pm' =>$missing_att_out,
+                    'status'=>'presence',
+                    'updated_at'=>now(),
+                ],
+            ]);
+        }
         return redirect()->to('/attendance');    
     }
 

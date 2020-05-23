@@ -43,7 +43,7 @@
                                
                                     <tr>
                                     @if($expense_claim_req->bill_id != null)
-<td><a href="{{ route('expenseClaim.download_file',$expense_claim_req->bill_id) }}" d
+<td><a href="{{ route('expenseClaim.download_file',$expense_claim_req->bill_id) }}" >
 <span class="btn-inner--icon"><img width="24" height="24" src="{{ asset('argon') }}/img/icons/common/file-download-solid.svg"></span></a></td>
 @else
 <td></td>
@@ -120,7 +120,7 @@
                                
                                     <tr>
                                     @if($expense_claim_req->bill_id != null)
-                                    <td><a href="{{ route('expenseClaim.download_file',$expense_claim_req->bill_id) }}" d
+                                    <td><a href="{{ route('expenseClaim.download_file',$expense_claim_req->bill_id) }}" >
 <span class="btn-inner--icon"><img width="24" height="24" src="{{ asset('argon') }}/img/icons/common/file-download-solid.svg"></span></a></td>
 @else
 <td></td>

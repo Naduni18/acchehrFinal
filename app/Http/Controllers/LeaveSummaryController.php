@@ -32,29 +32,29 @@ class LeaveSummaryController extends Controller
         $uid=$u->id;
         $uname=$u->name;
         $leave_count_full_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('status','=','approved')->where('category','=','full day')->count(); 
-        $leave_count_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','full day')->whereMonth('start','=',$now)->count();
+        $leave_count_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','full day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_half_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('status','=','approved')->where('category','=','half day')->count(); 
-        $leave_count_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','half day')->whereMonth('start','=',$now)->count();
+        $leave_count_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','half day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid )->where('status','=','approved')->where('category','=','short leave')->count(); 
-        $leave_count_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','short leave')->whereMonth('start','=',$now)->count();
+        $leave_count_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','short leave')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $approved_leave_count=$leave_count_full_day + $leave_count_half_day/2 +$leave_count_short_leave/4;
         $approved_leave_count_this_month=$leave_count_this_month_full_day+$leave_count_this_month_half_day/2+$leave_count_this_month_short_leave/4;
         
         $leave_count_no_pay_full_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','no pay')->where('status','=','approved')->where('category','=','full day')->count(); 
-        $leave_count_no_pay_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','full day')->whereMonth('start','=',$now)->count();
+        $leave_count_no_pay_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','full day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_no_pay_half_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','no pay')->where('status','=','approved')->where('category','=','half day')->count(); 
-        $leave_count_no_pay_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','half day')->whereMonth('start','=',$now)->count();
+        $leave_count_no_pay_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','half day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_no_pay_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','no pay')->where('status','=','approved')->where('category','=','short leave')->count(); 
-        $leave_count_no_pay_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','short leave')->whereMonth('start','=',$now)->count();
+        $leave_count_no_pay_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','short leave')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $approved_no_pay_leave_count=$leave_count_no_pay_full_day + $leave_count_no_pay_half_day/2 +$leave_count_no_pay_short_leave/4;
         $approved_no_pay_leave_count_this_month=$leave_count_no_pay_this_month_full_day+$leave_count_no_pay_this_month_half_day/2+$leave_count_no_pay_this_month_short_leave/4;
         
         $leave_count_casual_full_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','casual')->where('status','=','approved')->where('category','=','full day')->count(); 
-        $leave_count_casual_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','full day')->whereMonth('start','=',$now)->count();
+        $leave_count_casual_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','full day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_casual_half_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','casual')->where('status','=','approved')->where('category','=','half day')->count(); 
-        $leave_count_casual_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','half day')->whereMonth('start','=',$now)->count();
+        $leave_count_casual_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','half day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_casual_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','casual')->where('status','=','approved')->where('category','=','short leave')->count(); 
-        $leave_count_casual_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','short leave')->whereMonth('start','=',$now)->count();
+        $leave_count_casual_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','short leave')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $approved_casual_leave_count=$leave_count_casual_full_day + $leave_count_casual_half_day/2 +$leave_count_casual_short_leave/4;
         $approved_casual_leave_count_this_month=$leave_count_casual_this_month_full_day+$leave_count_casual_this_month_half_day/2+$leave_count_casual_this_month_short_leave/4;
         
@@ -95,29 +95,29 @@ class LeaveSummaryController extends Controller
         $uid=$u->id;
         $uname=$u->name;
         $leave_count_full_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('status','=','approved')->where('category','=','full day')->count(); 
-        $leave_count_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','full day')->whereMonth('start','=',$now)->count();
+        $leave_count_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','full day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_half_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('status','=','approved')->where('category','=','half day')->count(); 
-        $leave_count_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','half day')->whereMonth('start','=',$now)->count();
+        $leave_count_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','half day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid )->where('status','=','approved')->where('category','=','short leave')->count(); 
-        $leave_count_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','short leave')->whereMonth('start','=',$now)->count();
+        $leave_count_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('status','=','approved')->where('category','=','short leave')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $approved_leave_count=$leave_count_full_day + $leave_count_half_day/2 +$leave_count_short_leave/4;
         $approved_leave_count_this_month=$leave_count_this_month_full_day+$leave_count_this_month_half_day/2+$leave_count_this_month_short_leave/4;
         
         $leave_count_no_pay_full_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','no pay')->where('status','=','approved')->where('category','=','full day')->count(); 
-        $leave_count_no_pay_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','full day')->whereMonth('start','=',$now)->count();
+        $leave_count_no_pay_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','full day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_no_pay_half_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','no pay')->where('status','=','approved')->where('category','=','half day')->count(); 
-        $leave_count_no_pay_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','half day')->whereMonth('start','=',$now)->count();
+        $leave_count_no_pay_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','half day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_no_pay_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','no pay')->where('status','=','approved')->where('category','=','short leave')->count(); 
-        $leave_count_no_pay_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','short leave')->whereMonth('start','=',$now)->count();
+        $leave_count_no_pay_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','no pay')->where('status','=','approved')->where('category','=','short leave')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $approved_no_pay_leave_count=$leave_count_no_pay_full_day + $leave_count_no_pay_half_day/2 +$leave_count_no_pay_short_leave/4;
         $approved_no_pay_leave_count_this_month=$leave_count_no_pay_this_month_full_day+$leave_count_no_pay_this_month_half_day/2+$leave_count_no_pay_this_month_short_leave/4;
         
         $leave_count_casual_full_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','casual')->where('status','=','approved')->where('category','=','full day')->count(); 
-        $leave_count_casual_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','full day')->whereMonth('start','=',$now)->count();
+        $leave_count_casual_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','full day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_casual_half_day = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','casual')->where('status','=','approved')->where('category','=','half day')->count(); 
-        $leave_count_casual_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','half day')->whereMonth('start','=',$now)->count();
+        $leave_count_casual_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','half day')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $leave_count_casual_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid )->where('type','=','casual')->where('status','=','approved')->where('category','=','short leave')->count(); 
-        $leave_count_casual_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','short leave')->whereMonth('start','=',$now)->count();
+        $leave_count_casual_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $uid  )->where('type','=','casual')->where('status','=','approved')->where('category','=','short leave')->whereYear('date_','=',$now)->whereMonth('date_','=',$now)->count();
         $approved_casual_leave_count=$leave_count_casual_full_day + $leave_count_casual_half_day/2 +$leave_count_casual_short_leave/4;
         $approved_casual_leave_count_this_month=$leave_count_casual_this_month_full_day+$leave_count_casual_this_month_half_day/2+$leave_count_casual_this_month_short_leave/4;
         
@@ -141,7 +141,7 @@ class LeaveSummaryController extends Controller
          */
         public function index5()
         { 
-
+         $now = Carbon::now();
         $id = auth()->id();
         $summary_approved=array();
 $months=array(
@@ -162,16 +162,16 @@ $month_number=array('01','02','03','04','05','06','07','08','09','10','11','12')
         array_push($summary_approved,array("month","approved","pending","rejected","full day","half day","short leave","no pay","casual"));
         foreach($month_number as $m){
 
-        $leave_count_this_month_approved = DB::table('leave_requests')->where('request_by', '=', $id  )->where('status','=','approved')->whereMonth('date_','=',$m)->count();
-        $leave_count_this_month_rejected = DB::table('leave_requests')->where('request_by', '=', $id  )->where('status','=','rejected')->whereMonth('date_','=',$m)->count();
-        $leave_count_this_month_pending = DB::table('leave_requests')->where('request_by', '=', $id  )->where('status','=','pending')->whereMonth('date_','=',$m)->count();
+        $leave_count_this_month_approved = DB::table('leave_requests')->where('request_by', '=', $id  )->where('status','=','approved')->whereYear('date_','=',$now)->whereMonth('date_','=',$m)->count();
+        $leave_count_this_month_rejected = DB::table('leave_requests')->where('request_by', '=', $id  )->where('status','=','rejected')->whereYear('date_','=',$now)->whereMonth('date_','=',$m)->count();
+        $leave_count_this_month_pending = DB::table('leave_requests')->where('request_by', '=', $id  )->where('status','=','pending')->whereYear('date_','=',$now)->whereMonth('date_','=',$m)->count();
         
-        $leave_count_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $id  )->where('category','=','full day')->whereMonth('date_','=',$m)->count();
-        $leave_count_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $id  )->where('category','=','half day')->whereMonth('date_','=',$m)->count();
-        $leave_count_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $id  )->where('category','=','short leave')->whereMonth('date_','=',$m)->count();
+        $leave_count_this_month_full_day = DB::table('leave_requests')->where('request_by', '=', $id  )->where('category','=','full day')->whereYear('date_','=',$now)->whereMonth('date_','=',$m)->count();
+        $leave_count_this_month_half_day = DB::table('leave_requests')->where('request_by', '=', $id  )->where('category','=','half day')->whereYear('date_','=',$now)->whereMonth('date_','=',$m)->count();
+        $leave_count_this_month_short_leave = DB::table('leave_requests')->where('request_by', '=', $id  )->where('category','=','short leave')->whereYear('date_','=',$now)->whereMonth('date_','=',$m)->count();
         
-        $leave_count_this_month_no_pay = DB::table('leave_requests')->where('request_by', '=', $id  )->where('type','=','no pay')->whereMonth('date_','=',$m)->count();
-        $leave_count_this_month_casual = DB::table('leave_requests')->where('request_by', '=', $id  )->where('type','=','casual')->whereMonth('date_','=',$m)->count();
+        $leave_count_this_month_no_pay = DB::table('leave_requests')->where('request_by', '=', $id  )->where('type','=','no pay')->whereYear('date_','=',$now)->whereMonth('date_','=',$m)->count();
+        $leave_count_this_month_casual = DB::table('leave_requests')->where('request_by', '=', $id  )->where('type','=','casual')->whereYear('date_','=',$now)->whereMonth('date_','=',$m)->count();
 
         array_push($summary_approved,array(
            $months[$m],

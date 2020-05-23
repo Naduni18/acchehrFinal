@@ -6,8 +6,17 @@
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-12 mb-5 mb-xl-0">
+            
+            <div>
+            <a class="btn btn-success" href="{{ route('dailyAttendanceSummary.index') }}">
+            <i class="fas fa-chart-line"></i> {{ __('View Summarry') }}
+           </a>     
+            </div>
+            
+            </br>
                 <div class="card bg-white shadow">
                     <div class="card-body">
+                    @can('isAdmin')
                     <div class='row'>
                         <div class='col' style="padding:10px;">
                             <form id="upload_excel" method="post" enctype="multipart/form-data" action="{{ route('dailyAttendance.import') }}" autocomplete="off">
@@ -26,8 +35,7 @@
                             </form> 
                         </div>
                     </div>
-                    
-                    <p>{{ session('val') }}</p>
+                    @endcan
                    
                     <br/>
 <!-- implement search box to search by employee id/year/month -->

@@ -61,7 +61,7 @@
                                
                                     <tr>
                                     @if($leave_req->document_id != null)
-<td><a href="{{ route('leave.download_file',$leave_req->document_id) }}" d
+<td><a href="{{ route('leave.download_file',$leave_req->document_id) }}" >
 <span class="btn-inner--icon"><img width="24" height="24" src="{{ asset('argon') }}/img/icons/common/file-download-solid.svg"></span></a></td>
 @else
 <td></td>
@@ -143,7 +143,7 @@
                                
                                     <tr>
                                     @if($leave_req->document_id != null)
-                                    <td><a href="{{ route('leave.download_file',$leave_req->document_id) }}" d
+                                    <td><a href="{{ route('leave.download_file',$leave_req->document_id) }}" >
 <span class="btn-inner--icon"><img width="24" height="24" src="{{ asset('argon') }}/img/icons/common/file-download-solid.svg"></span></a></td>
 @else
 <td></td>

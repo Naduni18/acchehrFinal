@@ -28,7 +28,7 @@ class TrainingScheduleSummarryController extends Controller
         $uid=$u->id;
         $uname=$u->name;
         $training_done_count = DB::table('training_schedule')->where('assigned_to', 'like', '%'.$uid.'%' )->count(); 
-        $training_done_count_this_month = DB::table('training_schedule')->where('assigned_to', 'like', '%'.$uid.'%' )->whereMonth('start','=',$now)->count();
+        $training_done_count_this_month = DB::table('training_schedule')->where('assigned_to', 'like', '%'.$uid.'%' )->whereYear('start','=',$now)->whereMonth('start','=',$now)->count();
         array_push($summary,array($uname,$training_done_count,$training_done_count_this_month));
 
         }

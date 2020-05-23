@@ -22,7 +22,7 @@
       <div class="modal-body">
       <form id="editEventForm" method="post"  autocomplete="off">
        @csrf
-       <h1 id="eventTitle"></h1>
+       <h3 id="eventTitle"></h3>
        
        <input type="number" name="eventId" id="input-eventId" style="visibility:hidden;">
       </div>
@@ -275,7 +275,7 @@ if(info.event.source.id=='google'){
   $('#edit_btn').css('visibility', 'visible');
   $('#delete_btn').css('visibility', 'visible');
   $('#input-eventId').val(info.event.id);
-  $('#eventTitle').html("Event :"+info.event.title+" Start :"+info.event.start+" End: "+info.event.end);
+  $('#eventTitle').html("Event :"+info.event.title+" </br>Start :"+info.event.start+" </br>End: "+info.event.end);
   $( "#myModal" ).modal('toggle');
 }
 },

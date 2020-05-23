@@ -39,7 +39,8 @@
             subtitle: 'No of approved leaves of each employee', 
           },
           vAxis: {
-          format: '#.##'
+          format: '#.##',
+          minValue: 0
           } ,
 
         };
@@ -64,7 +65,8 @@
             subtitle: 'No of approved leaves of each employee', 
           },
           vAxis: {
-          format: '#.##'
+          format: '#.##',
+          minValue: 0
           } ,
 
         };
@@ -89,7 +91,8 @@ function drawChart3() {
       subtitle: 'No of leaves per month', 
     },
     vAxis: {
-      format: '#.##'
+      format: '#.##',
+      minValue: 0
     },
   };
 
