@@ -86,10 +86,27 @@
   <table class="tables" style="width:80%;hight:100%;text-align:left">
                         <tr>
                         
-                            <td>Name:   </td>
+                            <td>Username:   </td>
                             <td>{{ auth()->user()->name }}</td>
                         </tr>
                         
+                        <tr>
+                        
+                        <td>First name:   </td>
+                        <td>{{ auth()->user()->fname }}</td>
+                    </tr>
+
+                    <tr>
+                        
+                        <td>Middle name:   </td>
+                        <td>{{ auth()->user()->mname }}</td>
+                    </tr>
+
+                    <tr>
+                        
+                        <td>Last name:   </td>
+                        <td>{{ auth()->user()->lname }}</td>
+                    </tr>
                         <tr>
                             <td>NIC:   </td>
                             <td>{{ auth()->user()->NIC }}</td>  
@@ -134,6 +151,10 @@
                         <tr>
                             <td>Bank:   </td>
                             <td>{{ auth()->user()->bank }}</td>  
+                        </tr>
+                        <tr>
+                            <td>Bank:   </td>
+                            <td>{{ auth()->user()->bank_branch }}</td>  
                         </tr>
                         <tr>
                             <td>Bank account number:   </td>

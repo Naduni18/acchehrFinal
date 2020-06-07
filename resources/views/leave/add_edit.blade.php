@@ -83,7 +83,8 @@
                                     <select name="type" id="input-type" class="form-control form-control-alternative{{ $errors->has('type') ? ' is-invalid' : '' }}" placeholder="{{ __('Type') }}"   autofocus>
   
                                     <option value="no pay">No pay</option>
-                                    <option value="casual">Casual</option>
+                                    <option value="sick">Sick</option>
+                                    <option value="annual">Annual</option>
                  
                                     </select>
                                     

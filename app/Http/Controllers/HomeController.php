@@ -41,10 +41,11 @@ class HomeController extends Controller
 
         $assignees_array = DB::table('users')->select('id','name')->where('id', '!=', $id)->get();
         $no_of_leaves=$this->no_of_leaves();
+        $no_of_leaves_y=$this->no_of_leaves_y();
         $no_of_absent_days=$this->no_of_absent_days();
         $birthday_array=$this->birthdays();
         $anniversary_array=$this->anniversarys();
-       return view('dashboard',  compact('ce','ce2','ce3','assignees_array','no_of_leaves','no_of_absent_days','birthday_array','anniversary_array'));
+       return view('dashboard',  compact('ce','ce2','ce3','assignees_array','no_of_leaves','no_of_leaves_y','no_of_absent_days','birthday_array','anniversary_array'));
       
        
     }
@@ -137,6 +138,14 @@ class HomeController extends Controller
         $leave_balance = $leaves_fullDay +($leaves_halfDay/2)+($leaves_shortLeave/4);
 
         return $leave_balance;
+    }
+    public function no_of_leaves_y()
+    {
+        $id = auth()->id();
+        $now = Carbon::now();
+        $leave_balance_y = DB::table('leave_requests')->where('request_by', '=', $id )->where('status', '=', 'approved')->where('category', '=', 'full day')->whereYear('date_','=',$now)->count();
+
+        return $leave_balance_y;
     }
 
     public function no_of_absent_days()

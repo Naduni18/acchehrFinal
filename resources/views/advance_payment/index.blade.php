@@ -96,7 +96,7 @@
                       </br></br></br></br>
                       <div class="card bg-white shadow">
                     <div class="card-body">
-                      @can('isManager') 
+                      @can('isAdmin') 
                       <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
@@ -172,6 +172,60 @@
                                         @endif
                                     </tr>
                                 @endforeach
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr><label style="text-align: center;">{{ __('This month approved requests') }}</label></tr>
+                                <tr>
+                                
+                                    <th scope="col">{{ __('Employee') }}</th>
+                                    <th scope="col">{{ __('Total Amount') }}</th>
+                                    
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            @foreach ($advance_requests_this_month_total as $advance_reqs)
+                            <td>@php
+                                        $val =  \App\Http\Controllers\AdvanceRequestsController::get_user_name($advance_reqs->request_by);
+                                        $jsonval =json_encode($val);
+                                        $finalval = json_decode($jsonval, true);
+                                        echo $finalval['name'];
+                                        @endphp
+                            </td>
+                            <td>{{ $advance_reqs->amount }}</td>
+                            
+                            @endforeach
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr><label style="text-align: center;">{{ __('Last month approved requests') }}</label></tr>
+                                <tr>
+                                    <th scope="col">{{ __('Employee') }}</th>
+                                    <th scope="col">{{ __('Total Amount') }}</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            @foreach ($advance_requests_last_month_total as $advance_reqs)
+                            <td>@php
+                                        $val =  \App\Http\Controllers\AdvanceRequestsController::get_user_name($advance_reqs->request_by);
+                                        $jsonval =json_encode($val);
+                                        $finalval = json_decode($jsonval, true);
+                                        echo $finalval['name'];
+                                        @endphp
+                            </td>
+                            <td>{{ $advance_reqs->amount }}</td>
+                            
+                            @endforeach
+                            </tr>
                             </tbody>
                         </table>
                         @endcan

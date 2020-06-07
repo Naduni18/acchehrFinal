@@ -37,12 +37,42 @@
                                     @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}"  required autofocus>
+                                    <label class="form-control-label" for="input-name">{{ __('Username') }}</label>
+                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Username') }}"  required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('fname') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-fname">{{ __('First name') }}</label>
+                                    <input type="text" name="fname" id="input-fname" class="form-control form-control-alternative{{ $errors->has('fname') ? ' is-invalid' : '' }}" placeholder="{{ __('First name') }}"  required autofocus>
+
+                                    @if ($errors->has('fname'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('fname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('mname') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-mname">{{ __('Middle name') }}</label>
+                                    <input type="text" name="mname" id="input-mname" class="form-control form-control-alternative{{ $errors->has('mname') ? ' is-invalid' : '' }}" placeholder="{{ __('Middle name') }}"  required autofocus>
+
+                                    @if ($errors->has('mname'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('mname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('lname') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-lname">{{ __('Last name') }}</label>
+                                    <input type="text" name="lname" id="input-lname" class="form-control form-control-alternative{{ $errors->has('lname') ? ' is-invalid' : '' }}" placeholder="{{ __('Last name') }}"  required autofocus>
+
+                                    @if ($errors->has('lname'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('lname') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -170,6 +200,16 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="form-group{{ $errors->has('bank_branch') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-bank_branch">{{ __('Bank branch') }}</label>
+                                    <input type="text" name="bank_branch" id="input-bank_branch" class="form-control form-control-alternative{{ $errors->has('bank_branch') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank branch') }}" autofocus>
+
+                                    @if ($errors->has('bank_branch'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('bank_branch') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>                                
                                 <div class="form-group{{ $errors->has('bank_number') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-bank_number">{{ __('Bank Account Number') }}</label>
                                     <input type="text" pattern="[0-9A-Z-]{10,}" max="34" name="bank_number" id="input-bank_number" class="form-control form-control-alternative{{ $errors->has('bank_number') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank Account Number') }}"  autofocus>

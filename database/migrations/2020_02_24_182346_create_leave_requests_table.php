@@ -24,7 +24,7 @@ class CreateLeaveRequestsTable extends Migration
             $table->bigInteger('approved_by')->unsigned()->nullable();//emp_id
             $table->enum('status', ['approved','rejected','pending'])->default('pending');
             $table->enum('category', ['full day','half day','short leave'])->default('full day');
-            $table->enum('type', ['no pay','casual'])->default('casual');
+            $table->enum('type', ['no pay','sick','annual'])->default('no pay');
             $table->timestamps();
             $table->foreign('request_by')->references('id')->on('users');
             $table->foreign('approved_by')->references('id')->on('users');

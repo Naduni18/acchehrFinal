@@ -17,6 +17,9 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('avatar_id')->nullable();
             $table->string('name',100);
+            $table->string('fname',100);
+            $table->string('mname',100);
+            $table->string('lname',100);
             $table->string('NIC',12)->unique();
             $table->string('email',100)->unique();
             $table->string('password');
@@ -29,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('address_temporary',250)->nullable();
             $table->string('branch');
             $table->string('bank')->nullable();
+            $table->string('bank_branch')->nullable();
             $table->string('bank_number')->nullable();
             $table->string('EPF_number')->nullable();
             $table->string('next_kin_name',100)->nullable();

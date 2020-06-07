@@ -33,7 +33,17 @@
             subtitle: '(total no of employee present(absence) count in the month)/(no of days in the month*total no of employees)', 
           },
           vAxis: {
-          format: '#'
+            viewWindowMode:'explicit',
+            format: '#',        
+              viewWindow:{
+                min:0
+              }
+          } ,
+          hAxis: {
+            viewWindowMode:'explicit',
+              viewWindow:{
+                
+              }
           } ,
 
         };
@@ -56,8 +66,18 @@ function drawChart1() {
       subtitle: 'daily attendance in current month per employee', 
     },
     vAxis: {
-    format: '#'
-    } ,
+            viewWindowMode:'explicit',
+            format: '#',        
+              viewWindow:{
+                min:0
+              }
+          } ,
+          hAxis: {
+            viewWindowMode:'explicit',
+              viewWindow:{
+                
+              }
+          } ,
 
   };
 

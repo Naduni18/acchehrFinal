@@ -12,7 +12,7 @@
       <form id="addEventForm" method="post" enctype="multipart/form-data" action="{{ route('skill_rating.store') }}" autocomplete="off">
                             @csrf
                             <div class="pl-lg-4">
-                            <input type="text" name="emp_to_rate_id_" id="input-emp_to_rate_id" hidden>
+                            <input type="text" name="emp_to_rate_id_" id="input-emp_to_rate_id" value={{$emp_to_rate_id}} hidden>
 
                             
                                 <div class="form-group{{ $errors->has('file_receivings') ? ' has-danger' : '' }}">
@@ -66,16 +66,6 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('total_kpi') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-total_kpi">{{ __('total_kpi') }}</label>
-                                    <input type="number" min="0" name="total_kpi" id="input-total_kpi" class="form-control form-control-alternative{{ $errors->has('total_kpi') ? ' is-invalid' : '' }}" autofocus>
-
-                                    @if ($errors->has('total_kpi'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('total_kpi') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary mt-4">{{ __('Save') }}</button>
                                    </div>
@@ -96,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
         var values=@json($emp_to_rate);
 
-        $("#input-emp_to_rate_id").val(values.id);
+       // $("#input-emp_to_rate_id").val(values.id);
 
         $("#input-file_receivings").val(values.file_receivings);  
         $("#input-offers").val(values.offers); 

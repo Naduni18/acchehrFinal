@@ -186,10 +186,15 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
+  var this_year = new Date().getFullYear().toString();
+  var next_year = (new Date().getFullYear()+1).toString();
+  var last_year = (new Date().getFullYear()-1).toString();
+  var next_next_year = (new Date().getFullYear()+2).toString();
+  
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          googleCalendarApiKey: 'AIzaSyACMTvM6xtGLSgkyLZqKw2t4chXf-tw8u8',
+          googleCalendarApiKey: 'AIzaSyDTUBG88AAWMD3BOy-AwcgdeVqq3GpYDDk',
     plugins: [ 'dayGrid', 'timeGrid', 'list','interaction','bootstrap','rrule','moment','googleCalendar'  ],
     themeSystem: 'bootstrap',
     timeZone: 'Asia/Colombo',
@@ -232,22 +237,46 @@ eventSources: [
 {
 events:{!! $ce !!},
 id:'assigned_by_user',
-color: '#2dce8a',//green
+color: '#32b67a',//green
 },
 {
 events:{!! $ce2 !!},
 id:'assigned_to_user',
-color: '#7668e3',//blue
+color: '#9e69af',//purple
 },
 {
 events:{!! $ce3 !!},
 id:'no_assignees',
-color: '#fc6341',//orange
+color: '#f06b02',//orange
+},
+{
+events:[
+    {
+      title: 'Year end vacation', 
+      start: this_year+'-12-18', 
+      end: next_year+'-01-01',
+      rendering: 'background'
+    },
+    {
+      title: 'Year end vacation', 
+      start: last_year+'-12-18', 
+      end: this_year+'-01-01',
+      rendering: 'background' 
+    },
+    {
+      title: 'Year end vacation', 
+      start: next_year+'-12-18', 
+      end: next_next_year+'-01-01',
+      rendering: 'background' 
+    }
+  ],
+id:'vacation',
+color: '#35baf6',//light blue
 },
 { 
 googleCalendarId: 'en.lk#holiday@group.v.calendar.google.com',
 id:'google',
-color: '#ffd600',//yellow
+color: '#f7c027',//yellow
 }
 ],
 customButtons: {

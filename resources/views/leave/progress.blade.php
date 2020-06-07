@@ -8,12 +8,12 @@
             <div class="col-xl-12 mb-5 mb-xl-0 ">
                 <div class="card bg-white shadow ">
                     <div class="card-body">
-                    <div id="columnchart3" style="height: 400px;"></div>
+                    <div id="columnchart3" style="height: 500px;"></div>
                     @can('isManager')
-                    <div id="columnchart" style="height: 400px;"></div>
+                    <div id="columnchart" style="height: 500px;"></div>
                     @endcan
                     @can('isAdmin')
-                    <div id="columnchart2" style="height: 400px;"></div>
+                    <div id="columnchart2" style="height: 500px;"></div>
                     @endcan
                     
                     </div>
@@ -39,8 +39,17 @@
             subtitle: 'No of approved leaves of each employee', 
           },
           vAxis: {
-          format: '#.##',
-          minValue: 0
+            viewWindowMode:'explicit',
+            format: '#.##',
+              viewWindow:{     
+                min:0
+              }
+          } ,
+          hAxis: {
+            viewWindowMode:'explicit',
+              viewWindow:{
+                
+              }
           } ,
 
         };
@@ -52,30 +61,38 @@
       @endcan
       @can('isAdmin')
 //admin chart
-      google.charts.setOnLoadCallback(drawChart2);
+google.charts.setOnLoadCallback(drawChart2);
 
-      function drawChart2() {
+function drawChart2() {
 
-        var data = google.visualization.arrayToDataTable(<?php echo $sum; ?>);
+  var data = google.visualization.arrayToDataTable(<?php echo $sum; ?>);
 
-        var options = {
-          legend: 'bottom',
-          chart: {
-            title: 'Leave summary of employees',
-            subtitle: 'No of approved leaves of each employee', 
-          },
-          vAxis: {
-          format: '#.##',
-          minValue: 0
-          } ,
+  var options = {
+    legend: {position: 'bottom', maxLines: 3},
+    chart: {
+      title: 'Leave summary of employees',
+      subtitle: 'No of approved leaves of each employee', 
+    },
+    vAxis: {
+      viewWindowMode:'explicit',
+      format: '#.##',
+        viewWindow:{     
+          min:0
+        }
+    } ,
+    hAxis: {
+      viewWindowMode:'explicit',
+        viewWindow:{
+          
+        }
+    } ,
 
-        };
+  };
 
-        var chart = new google.charts.Bar(document.getElementById('columnchart2'));
+  var chart = new google.charts.Bar(document.getElementById('columnchart2'));
 
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+}
       @endcan
 //employee chart
       google.charts.setOnLoadCallback(drawChart3);
@@ -91,9 +108,18 @@ function drawChart3() {
       subtitle: 'No of leaves per month', 
     },
     vAxis: {
-      format: '#.##',
-      minValue: 0
-    },
+            viewWindowMode:'explicit',
+            format: '#',        
+              viewWindow:{
+                min:0
+              }
+          } ,
+          hAxis: {
+            viewWindowMode:'explicit',
+              viewWindow:{
+                
+              }
+          } ,
   };
 
   var chart = new google.charts.Bar(document.getElementById('columnchart3'));

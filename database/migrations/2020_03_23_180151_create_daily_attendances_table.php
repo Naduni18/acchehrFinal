@@ -21,7 +21,7 @@ class CreateDailyAttendancesTable extends Migration
             $table->time('out_am')->nullable();
             $table->time('in_pm')->nullable();
             $table->time('out_pm')->nullable();
-            $table->enum('status', ['Absence','presence'])->default('presence');
+            $table->enum('status', ['Absence','presence','full day leave','half day leave','short leave'])->default('presence');
             $table->foreign('emp_id')->references('id')->on('users');
             $table->timestamps();
         });

@@ -11,7 +11,8 @@
     use Illuminate\Http\UploadedFile;
     use Illuminate\Support\Facades\Storage;
     use Uuid;
-    
+    use Carbon\Carbon;
+
     class AdvanceRequestsController extends Controller
     {
         /**
@@ -22,10 +23,16 @@
         public function index()
         {
             $id = auth()->id();
+            $now = Carbon::now();
+            $thismonth=strval($now->format('F'));
+            $lastMonth_s =  $now->subMonth()->format('F');
+            $lastMonth =  strval($lastMonth_s);
             $advance_requests = DB::table('advance_requests')->where('request_by', '=', $id)->get();  
-            $to_approve = DB::table('advance_requests')->where('approved_by', '=', $id)->get();
+            $to_approve = DB::table('advance_requests')->get();
       
-            return view('advance_payment.index',  compact('advance_requests','to_approve'));
+            $advance_requests_this_month_total=DB::table('advance_requests')->where('status', '=', 'approved')->whereYear('for_year', '=', $now->year )->whereMonth('for_month','=',$thismonth )->get();
+            $advance_requests_last_month_total=DB::table('advance_requests')->where('status', '=', 'approved')->whereYear('for_year', '=', $now->year )->whereMonth('for_month','=',$lastMonth)->get();
+            return view('advance_payment.index',  compact('advance_requests','to_approve','advance_requests_this_month_total','advance_requests_last_month_total'));
           
            
         }

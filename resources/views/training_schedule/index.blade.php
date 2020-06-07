@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          googleCalendarApiKey: 'AIzaSyACMTvM6xtGLSgkyLZqKw2t4chXf-tw8u8',
+          googleCalendarApiKey: 'AIzaSyDTUBG88AAWMD3BOy-AwcgdeVqq3GpYDDk',
     plugins: [ 'dayGrid', 'timeGrid', 'list','interaction','bootstrap','rrule','moment','googleCalendar'  ],
     themeSystem: 'bootstrap',
     timeZone: 'Asia/Colombo',
@@ -196,10 +196,12 @@ eventSources: [
 {
 events:{!! $ce !!},
 id:'personal',
+color: '#32b67a',//green
 },
 { 
 googleCalendarId: 'en.lk#holiday@group.v.calendar.google.com',
 id:'google',
+color: '#f7c027',//yellow
 }
 ],
 customButtons: {

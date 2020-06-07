@@ -11,6 +11,7 @@
     use Illuminate\Http\UploadedFile;
     use Illuminate\Support\Facades\Storage;
     use Uuid;
+    use Carbon\Carbon;
     
     class ExpenseClaimRequestController extends Controller
 {
@@ -21,11 +22,17 @@
          */
         public function index()
         {
+            $now = Carbon::now();
+            $lastMonth_s =  $now->subMonth()->month;
+            $lastMonth =  strval($lastMonth_s);
             $id = auth()->id();
             $expense_claim_requests = DB::table('expense_claim')->where('request_by', '=', $id)->get();  
-            $to_approve = DB::table('expense_claim')->where('approved_by', '=', $id)->get();
-      
-            return view('expense_claim.view',  compact('expense_claim_requests','to_approve'));
+            $to_approve = DB::table('expense_claim')->where('status', '=', 'pending')->get();
+            $expense_claim_this_month_total = DB::table('expense_claim')->where('status', '=', 'approved')->whereMonth('date','=',$now)->get();
+            $expense_claim_last_month_total = DB::table('expense_claim')->where('status', '=', 'approved')->whereMonth('date','=',$lastMonth)->get();
+
+           
+            return view('expense_claim.view',  compact('expense_claim_requests','to_approve' ,'expense_claim_last_month_total','expense_claim_this_month_total' ));
           
            
         }

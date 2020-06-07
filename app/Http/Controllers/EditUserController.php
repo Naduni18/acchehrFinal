@@ -33,6 +33,9 @@ class EditUserController extends Controller
         array(
             'avatar_id' => $avatar_name,
             'name'=>$request->name,
+            'fname'=>$request->fname,
+            'mname'=>$request->mname,
+            'lname'=>$request->lname,
             'NIC'=>$request->NIC,
             'email'=>$request->email,
             'current_job_position'=>$request->current_job_position,
@@ -44,6 +47,7 @@ class EditUserController extends Controller
             'address_temporary'=>$request->address_temporary,
             'branch'=>$request->branch,
             'bank'=>$request->bank,
+            'bank_branch'=>$request->bank_branch,
             'bank_number'=>$request->bank_number,
             'EPF_number'=>$request->EPF_number,
             'user_role'=>$request->user_role,
@@ -84,6 +88,9 @@ class EditUserController extends Controller
             [
             'avatar_id' => $avatar_name,   
             'name'=>$request->name,
+            'fname'=>$request->fname,
+            'mname'=>$request->mname,
+            'lname'=>$request->lname,
             'NIC'=>$request->NIC,
             'email'=>$request->email,
             'password'=>$pass,
@@ -96,6 +103,7 @@ class EditUserController extends Controller
             'address_temporary'=>$request->address_temporary,
             'branch'=>$request->branch,
             'bank'=>$request->bank,
+            'bank_branch'=>$request->bank_branch,
             'bank_number'=>$request->bank_number,
             'EPF_number'=>$request->EPF_number,
             'user_role'=>$request->user_role,
@@ -114,6 +122,9 @@ class EditUserController extends Controller
         DB::table('users')->insert([
             [
             'name'=>$request->name,
+            'fname'=>$request->fname,
+            'mname'=>$request->mname,
+            'lname'=>$request->lname,
             'NIC'=>$request->NIC,
             'email'=>$request->email,
             'password'=>$pass,
@@ -126,6 +137,7 @@ class EditUserController extends Controller
             'address_temporary'=>$request->address_temporary,
             'branch'=>$request->branch,
             'bank'=>$request->bank,
+            'bank_branch'=>$request->bank_branch,
             'bank_number'=>$request->bank_number,
             'EPF_number'=>$request->EPF_number,
             'user_role'=>$request->user_role,

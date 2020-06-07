@@ -112,7 +112,9 @@ $reader->setReadDataOnly(true);
                 }else{
                     $atten_id=$user_att->id;
                     $missing_att_record=DB::table('missing_attendance')->where('request_by', '=',  $atten_id)->whereDate('date', '=',  $final_date)->first();
-                   if($missing_att_record==null){
+                    $leave_record=DB::table('leave_requests')->where('request_by', '=',  $atten_id)->whereDate('date_', '=',  $final_date)->first();
+                   
+                    if($missing_att_record==null and $leave_record==null ){
                     DB::table('daily_attendances')->insertOrIgnore([
                         [
                             'emp_id' =>$user_att->id,
@@ -185,6 +187,11 @@ $reader->setReadDataOnly(true);
                          ],
                      ]);
                  }else{
+                    $atten_id=$user_att->id;
+                    $missing_att_record=DB::table('missing_attendance')->where('request_by', '=',  $atten_id)->whereDate('date', '=',  $final_date)->first();
+                    $leave_record=DB::table('leave_requests')->where('request_by', '=',  $atten_id)->whereDate('date_', '=',  $final_date)->first();
+                   
+                    if($missing_att_record==null and $leave_record==null ){
                      DB::table('daily_attendances')->insertOrIgnore([
                          [
                              'emp_id' =>$user_att->id,
@@ -193,6 +200,7 @@ $reader->setReadDataOnly(true);
                              'created_at'=>now(),
                          ],
                      ]); 
+                        }
                  }
                 }
          }
@@ -256,6 +264,11 @@ $reader->setReadDataOnly(true);
                         ],
                     ]);
                 }else{
+                    $atten_id=$user_att->id;
+                    $missing_att_record=DB::table('missing_attendance')->where('request_by', '=',  $atten_id)->whereDate('date', '=',  $final_date)->first();
+                    $leave_record=DB::table('leave_requests')->where('request_by', '=',  $atten_id)->whereDate('date_', '=',  $final_date)->first();
+                   
+                    if($missing_att_record==null and $leave_record==null ){
                     DB::table('daily_attendances')->insertOrIgnore([
                         [
                             'emp_id' =>$user_att->id,
@@ -264,6 +277,7 @@ $reader->setReadDataOnly(true);
                             'created_at'=>now(),
                         ],
                     ]); 
+                    }
                 }
             }
         }

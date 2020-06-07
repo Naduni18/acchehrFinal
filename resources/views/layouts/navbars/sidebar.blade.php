@@ -2,8 +2,8 @@
     <div class="container-fluid">
         
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+        <a class="navbar-brand pt-3" href="{{ route('home') }}">
+            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" style="width:160px;height:200px;" alt="ACCHE Logo">
         </a>
         
         <!-- Collapse -->
@@ -67,6 +67,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dailyAttendance') }}">
                         <i class="fas fa-user-plus text-primary"></i> {{ __('Attendance records') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('skill_rating') }}">
+                        <i class="fas fa-user-plus text-primary"></i> {{ __('rate employees') }}
                     </a>
                 </li>
                 @endcan

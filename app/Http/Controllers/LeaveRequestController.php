@@ -50,6 +50,37 @@ class LeaveRequestController extends Controller
         $leaveid=$request->requestId;
         DB::table('leave_requests')->where('id', '=',  $leaveid)->update(['status' => 'approved']);
 
+        $leave_record=DB::table('leave_requests')->where('id', '=',  $leaveid)->first();
+
+        $leave_date=$leave_record->date_;
+        $leave_empid=$leave_record->request_by;
+        $leave_category=$leave_record->category;//'full day','half day','short leave'
+
+        $dailyAttendance_record = DB::table('daily_attendances')->where('emp_id', '=',  $leave_empid)->whereDate('date', '=',  $leave_date)->first();
+
+        if($dailyAttendance_record==null){
+
+            DB::table('daily_attendances')->insertOrIgnore([
+                [
+                    'emp_id' =>$leave_empid,
+                    'date' =>$leave_date,
+                    'status'=>$leave_category,
+                    'created_at'=>now(),
+                ],
+            ]);
+
+        }else{
+
+            $record_id=$dailyAttendance_record->id;
+            DB::table('daily_attendances')->where('id', '=', $record_id)->update([
+                [
+                    'date' =>$leave_date,
+                    'status'=>$leave_category,
+                    'updated_at'=>now(),
+                ],
+            ]);
+        }
+
         return redirect()->to('/leave');    
     }
 

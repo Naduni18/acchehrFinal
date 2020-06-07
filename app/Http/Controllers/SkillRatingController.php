@@ -32,6 +32,7 @@
                 $employee_rating=DB::table('skill_rating')->where([['emp_id', '=', $uid],])->first();
                 if($employee_rating!=null){
                 array_push($emp_rating_array,array(
+                    'id'=>$uid,
                     'name'=>$uname,
                     'file_receivings' => $employee_rating->file_receivings,
                     'offers' => $employee_rating->offers,
@@ -43,12 +44,21 @@
             }
             }
       
+            $employees_array_all=DB::table('users')->get();
+            $employee_rating_all=DB::table('skill_rating')->get();
 
-            return view('skill_rating.index',  compact('employees_array','emp_rating_array'));
+            return view('skill_rating.index',  compact('employees_array','emp_rating_array','employee_rating_all','employees_array_all'));
           
            
         }
      
+        public static function get_user_name($user_id)
+    {
+        $user_=DB::table('users')->select('name')->where([['id', '=', $user_id],])->first();
+        
+        return $user_;
+    }
+    
         public function index2(Request $request)
         {
             
@@ -59,7 +69,7 @@
             
            
             
-            return view('skill_rating.edit',compact('emp_to_rate'));
+            return view('skill_rating.edit',compact('emp_to_rate','emp_to_rate_id'));
             
            
         }
@@ -74,18 +84,26 @@
         {
             
           
-            $manager_supervisor = auth()->id();
+            $ratedBy = auth()->id();
            
-            
-                DB::table('skill_rating')->where('id', '=', $request->emp_to_rate_id_)->update(
-                    array(
-                        
+            $total_kpi_value=(2*($request->file_receivings))+(2*($request->offers))+(2*($request->visa_grants))+($request->IELTS_class_registrations)+($request->IELTS_exam_registrations);
+             /*
+             1 file_receiving =2 points
+             1 offer =2 points
+             1 visa_grant =2 points
+             1 IELTS_class_registration =1 point
+             1 IELTS_exam_registration =1 point
+             */
+            DB::table('skill_rating')->where('id', '=', $request->emp_to_rate_id_)->updateOrInsert(
+                    array(   
+                    'emp_id'=>$request->emp_to_rate_id_,
                     'file_receivings' => $request->file_receivings,
                     'offers' => $request->offers,
                     'visa_grants'=> $request->visa_grants,
                     'IELTS_class_registrations'=> $request->IELTS_class_registrations,
                     'IELTS_exam_registrations'=> $request->IELTS_exam_registrations,
-                    'total_kpi'=> $request->total_kpi,
+                    'total_kpi'=> $total_kpi_value,
+                    'rated_by'=>$ratedBy,
                     )
                 );
         

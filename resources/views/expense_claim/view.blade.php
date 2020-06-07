@@ -100,11 +100,11 @@
                       </br></br></br></br>
                       <div class="card bg-white shadow">
                     <div class="card-body">
-                      @can('isManager') 
+                      @can('isAdmin') 
                       <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
-                            <tr><label style="text-align: center;">{{ __('Requests from employees') }}</label></tr>
+                            <tr><label style="text-align: center;">{{ __('Pending requests from employees') }}</label></tr>
                                 <tr>
                                     <th scope="col">{{ __('Bill') }}</th>
                                     <th scope="col">{{ __('Reason') }}</th>
@@ -116,6 +116,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @if($to_approve!=null)
                                 @foreach ($to_approve as $expense_claim_req)
                                
                                     <tr>
@@ -150,7 +151,7 @@
                                                             @csrf
                                           
                                                             @method('post')
-                                                            <input type="number" name="requestId" id="input-requestId" value="{{$expense_claim_req->id}}" style="visibility:hidden;">
+                                                            <input type="number" name="requestId" id="input-requestId" value="{{$expense_claim_req->claim_id}}" style="visibility:hidden;">
                                                             <button formaction="{{ route('expenseClaim.reject') }}" name="reject" type="submit" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to reject?") }}') ? this.parentElement.submit() : ''">
                                                                 {{ __('Reject') }}
                                                             </button>
@@ -179,6 +180,65 @@
                                         @endif
                                     </tr>
                                 @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr><label style="text-align: center;">{{ __('This month approved requests') }}</label></tr>
+                                <tr>
+                                
+                                    <th scope="col">{{ __('Employee') }}</th>
+                                    <th scope="col">{{ __('Total Amount') }}</th>
+                                    <th scope="col">{{ __('Reason') }}</th>
+                                    <th scope="col">{{ __('Date') }}</th>
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            @foreach ($expense_claim_this_month_total as $expense_claims)
+                            <td>@php
+                                        $val =  \App\Http\Controllers\ExpenseClaimRequestController::get_user_name($expense_claims->request_by);
+                                        $jsonval =json_encode($val);
+                                        $finalval = json_decode($jsonval, true);
+                                        echo $finalval['name'];
+                                        @endphp
+                            </td>
+                            <td>{{ $expense_claims->amount }}</td>
+                            <td>{{ $expense_claims->reason}}</td>
+                            <td>{{ $expense_claims->date }}</td>
+                            @endforeach
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr><label style="text-align: center;">{{ __('Last month approved requests') }}</label></tr>
+                                <tr>
+                                    <th scope="col">{{ __('Employee') }}</th>
+                                    <th scope="col">{{ __('Total Amount') }}</th>
+                                    <th scope="col">{{ __('Reason') }}</th>
+                                    <th scope="col">{{ __('Date') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            @foreach ($expense_claim_last_month_total as $expense_claims)
+                            <td>@php
+                                        $val =  \App\Http\Controllers\ExpenseClaimRequestController::get_user_name($expense_claims->request_by);
+                                        $jsonval =json_encode($val);
+                                        $finalval = json_decode($jsonval, true);
+                                        echo $finalval['name'];
+                                        @endphp
+                            </td>
+                            <td>{{ $expense_claims->amount }}</td>
+                            <td>{{ $expense_claims->reason}}</td>
+                            <td>{{ $expense_claims->date }}</td>
+                            @endforeach
+                            </tr>
                             </tbody>
                         </table>
                         @endcan

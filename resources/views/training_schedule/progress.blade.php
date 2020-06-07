@@ -31,7 +31,17 @@
             subtitle: 'No of training sessions done by each employee', 
           },
           vAxis: {
-          format: '#'
+            viewWindowMode:'explicit',
+            format: '#',        
+              viewWindow:{
+                min:0
+              }
+          } ,
+          hAxis: {
+            viewWindowMode:'explicit',
+              viewWindow:{
+                
+              }
           } ,
 
         };
